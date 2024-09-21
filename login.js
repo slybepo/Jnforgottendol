@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         PlayFabClientSDK.LoginWithEmailAddress(loginRequest, function (result) {
             // Login successful
-            window.location.href = "test.html";
+            window.location.href = "index.html";
             feedback.textContent = "Login successful!";
             feedback.style.color = "#00FF00";  // Green for success
             // Redirect or handle successful login here
