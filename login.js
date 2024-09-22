@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const currentUrl = window.location.origin; // Get the current domain
             const newUrl = `${currentUrl}/${userId}`;  // Construct the new URL
             window.history.pushState({}, '', newUrl);  // Update the browser URL
-            
+            showLoadingScreen()
             // Optionally, redirect to the profile page
             window.location.href = newUrl;
         }, function (error) {
@@ -38,3 +38,18 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+function showLoadingScreen() {
+    const loadingScreen = document.getElementById('loading-screen');
+    const content = document.getElementById('content');
+
+    loadingScreen.style.display = 'flex'; // Show loading screen
+
+    // Simulate a loading delay
+    setTimeout(() => {
+        loadingScreen.style.display = 'none'; // Hide loading screen
+        content.style.display = 'block'; // Show main content
+    }, 2000); // Change the delay time as needed
+}
+
+// Call the function to show the loading screen when the page loads
+window.onload = showLoadingScreen;
