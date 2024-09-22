@@ -424,17 +424,85 @@ body {
     font-size: 2em;
     z-index: 9999; /* Ensure it is above other content */
 }
-.profile-container {
-  
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(255, 100, 144, 0.8);
+/* General body style */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #121212; /* Dark background */
+    color: #ffffff; /* White text */
+    margin: 0;
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2em;
-    z-index: 9999; /* Ensure it is above other content */
+    height: 100vh;
+}
+
+/* Container for the profile */
+.profile-container {
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 350px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Profile data display */
+.profile-container h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #b3b3b3;
+}
+
+.profile-container p {
+    font-size: 18px;
+    margin: 5px 0;
+}
+
+/* Loading state */
+#loading-message {
+    font-size: 18px;
+    color: #cccccc;
+}
+
+/* Styling for user roles */
+#userRole {
+    font-size: 20px;
+    color: #9e9e9e;
+    margin: 10px 0;
+}
+
+.admin {
+    color: #ff6b6b; /* Red for admin */
+}
+
+.moderator {
+    color: #4caf50; /* Green for moderator */
+}
+
+.user {
+    color: #2196f3; /* Blue for regular user */
+}
+
+/* Profile picture styling */
+#profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid #5c5c5c;
+    margin-bottom: 15px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Fade in animation for profile */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
