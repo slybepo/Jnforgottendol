@@ -24,18 +24,17 @@ document.addEventListener('DOMContentLoaded', function () {
             feedback.textContent = "Login successful!";
             feedback.style.color = "#00FF00";  // Green for success
             // Redirect or handle successful login here
+            const userId = result.data.PlayFabId; // Get the PlayFab User ID
+            const currentUrl = window.location.origin; // Get the current domain
+            const newUrl = `${currentUrl}/${userId}`;  // Construct the new URL
+            window.history.pushState({}, '', newUrl);  // Update the browser URL
+            
+            // Optionally, redirect to the profile page
+            window.location.href = newUrl;
         }, function (error) {
             // Login failed
             feedback.textContent = `Error: ${error.errorMessage}`;
             feedback.style.color = "#FF0000";  // Red for error
         });
     });
-});
-PlayFabClientSDK.GetAccountInfo({}, function(result) {
-    const userId = result.data.AccountInfo.PlayFabId; // Get the PlayFab User ID
-    const currentUrl = window.location.origin; // Get the current domain (e.g., starversevr.xyz)
-    const newUrl = `${currentUrl}/${userId}`;  // Construct the new URL with the User ID
-    window.history.pushState({}, '', newUrl);  // Update the browser URL without reloading the page
-}, function(error) {
-    console.log("Error retrieving user info:", error);
 });
