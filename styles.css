@@ -424,3 +424,17 @@ body {
     font-size: 2em;
     z-index: 9999; /* Ensure it is above other content */
 }
+.profile-container {
+  
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 100, 144, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    z-index: 9999; /* Ensure it is above other content */
+}
