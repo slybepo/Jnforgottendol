@@ -40,3 +40,20 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('error-message').textContent = 'No user ID provided in the URL.';
     }
 });
+
+// Function to get user role from CloudScript
+function getUserRole() {
+    PlayFabClientSDK.ExecuteCloudScript({
+        FunctionName: "assignUserRole",  // CloudScript function name
+        FunctionParameter: {},           // No parameters required
+        GeneratePlayStreamEvent: true    // Optional: generates a PlayStream event
+    }, function (result) {
+        const userRole = result.data.FunctionResult.role;
+        document.getElementById('userRole').textContent = userRole;
+    }, function (error) {
+        console.log("Error retrieving user role:", error);
+    });
+}
+
+// Call this function after logging in or fetching account info
+getUserRole();
