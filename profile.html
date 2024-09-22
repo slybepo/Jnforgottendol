@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Futuristic Design</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Logo in the top left -->
+    <div class="logo">
+        <img src="your-logo.png" alt="Logo">
+    </div>
+
+    <!-- Profile Container -->
+    <div id="profileContainer" class="profile-container">
+        <h1>Your Profile</h1>
+        
+        <div id="userProfile" class="user-profile">
+            <img id="profilePicture" src="default-avatar.png" alt="Profile Picture">
+            <form id="editProfileForm">
+                <input type="text" id="displayName" placeholder="Display Name" required>
+                <textarea id="bio" placeholder="Bio" required></textarea>
+                <input type="file" id="pfpInput" accept="image/*">
+                <button type="submit" class="filled-button">Update Profile</button>
+            </form>
+            <div id="feedback" class="feedback-message"></div>
+        </div>
+    </div>
+
+    <!-- Not logged in message -->
+    <div id="notLoggedIn" class="not-logged-in">
+        <img src="not-logged-in.png" alt="Not Logged In">
+        <p>You are not logged in. <a href="login.html">Login here</a> to view this page.</p>
+    </div>
+
+    <!-- Neon bubble animation background -->
+    <div class="neon-bubbles"></div>
+
+    <script src="https://download.playfab.com/PlayFabClientApi.js"></script>
+    <script src="profile.js"></script>
+</body>
+</html>
