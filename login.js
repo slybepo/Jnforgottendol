@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // Redirect or handle successful login here
             const userId = result.data.PlayFabId; // Get the PlayFab User ID
             const currentUrl = window.location.origin; // Get the current domain
-            const newUrl = `${currentUrl}/${userId}`;  // Construct the new URL
+            const newUrl = `https://starversevr.xyz/${userId}`;  // Construct the new URL
             window.history.pushState({}, '', newUrl);  // Update the browser URL
             showLoadingScreen()
             // Optionally, redirect to the profile page
