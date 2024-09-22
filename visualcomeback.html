@@ -55,7 +55,7 @@
     const ctx = canvas.getContext("2d");
     const gridSize = 15;
     let snake = [{x: 150, y: 150}];
-    let direction = {x: 0, y: 0};
+    let direction = {x: 1, y: 0};  // Initial direction: moving right
     let food = {x: 0, y: 0};
     let score = 0;
 
@@ -69,7 +69,7 @@
         if (head.x < 0 || head.x >= canvas.width || head.y < 0 || head.y >= canvas.height || snakeCollision(head)) {
             alert("Game Over! Your score is: " + score);
             snake = [{x: 150, y: 150}];
-            direction = {x: 0, y: 0};
+            direction = {x: 1, y: 0};  // Reset direction
             score = 0;
             placeFood();
         }
@@ -124,5 +124,4 @@
 </script>
 
 </body>
-  </html>
-  
+</html>
