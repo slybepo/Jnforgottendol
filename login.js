@@ -31,3 +31,11 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+PlayFabClientSDK.GetAccountInfo({}, function(result) {
+    const userId = result.data.AccountInfo.PlayFabId; // Get the PlayFab User ID
+    const currentUrl = window.location.origin; // Get the current domain (e.g., starversevr.xyz)
+    const newUrl = `${currentUrl}/${userId}`;  // Construct the new URL with the User ID
+    window.history.pushState({}, '', newUrl);  // Update the browser URL without reloading the page
+}, function(error) {
+    console.log("Error retrieving user info:", error);
+});
