@@ -1,36 +1,42 @@
 // Initialize PlayFab SDK
-PlayFab.settings.titleId = "YOUR_TITLE_ID"; // Replace with your PlayFab Title ID
+PlayFab.settings.titleId = "YOUR_TITLE_ID";  // Replace with your PlayFab Title ID
 
 document.addEventListener('DOMContentLoaded', function () {
-    const profileContainer = document.getElementById('profileContainer');
-    const notLoggedInContainer = document.getElementById('notLoggedIn');
-    const feedback = document.getElementById('feedback');
-    
-    // Check if user is logged in
-    PlayFabClientSDK.GetAccountInfo({}, function(result) {
-        // User is logged in
-        profileContainer.style.display = 'block';
-        notLoggedInContainer.style.display = 'none';
-        
-        const userId = result.data.AccountInfo.PlayFabId; // Get the PlayFab User ID
-        const currentUrl = window.location.origin; // Get the current domain
-        const newUrl = `${currentUrl}/${userId}`;  // Construct the new URL
-        window.history.pushState({}, '', newUrl);  // Update the browser URL
+    // Function to get query parameter (PlayFab ID in this case)
+    function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
 
-        // Continue loading the profile data...
-        const userInfo = result.data.AccountInfo;
-        document.getElementById('displayName').value = userInfo.Username || '';
-        document.getElementById('bio').value = userInfo.Bio || '';
-        document.getElementById('profilePicture').src = userInfo.ProfilePictureUrl || 'default-avatar.png';
+    // Get the PlayFab ID from the URL (?user=PlayFabId)
+    const playfabId = getQueryParam('user');
 
-        // Handle profile update
-        document.getElementById('editProfileForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            updateProfile();
+    if (playfabId) {
+        // Call PlayFab API to get user account info using PlayFab ID
+        const request = { PlayFabId: playfabId };
+
+        PlayFabClientSDK.GetAccountInfo(request, function (result) {
+            const userInfo = result.data.AccountInfo;
+
+            // Display PlayFab ID
+            document.getElementById('playfabId').textContent = userInfo.PlayFabId;
+
+            // Display Display Name
+            document.getElementById('displayName').textContent = userInfo.TitleInfo.DisplayName || 'No Display Name';
+
+            // Display Join Date
+            const joinDate = new Date(userInfo.TitleInfo.Created);
+            document.getElementById('joinDate').textContent = joinDate.toDateString();
+
+
+        }, function (error) {
+            // Display error message
+            document.getElementById('error-message').style.display = 'block';
+            document.getElementById('error-message').textContent = `Error: ${error.errorMessage}`;
         });
-    }, function(error) {
-        // User is not logged in
-        profileContainer.style.display = 'none';
-        notLoggedInContainer.style.display = 'block';
-    });
+    } else {
+        // If no PlayFab ID in the URL, display error
+        document.getElementById('error-message').style.display = 'block';
+        document.getElementById('error-message').textContent = 'No user ID provided in the URL.';
+    }
 });
