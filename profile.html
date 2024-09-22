@@ -8,30 +8,22 @@
 </head>
 <body>
    
-    <title>Coming Soon..</title>
+    
+    <div class="profile-container">
+        <h1>Profile Information</h1>
 
+        <!-- Profile Information -->
+        <div class="profile-info">
+            <p><strong>PlayFab ID:</strong> <span id="playfabId">Loading...</span></p>
+            <p><strong>Display Name:</strong> <span id="displayName">Loading...</span></p>
+            <p><strong>Join Date:</strong> <span id="joinDate">Loading...</span></p>
+            <p><strong>Role:</strong> <span id="userRole">Loading...</span></p>
+        </div>
 
-    <div id="profileContainer" class="profile-container">
-        <h1>Your Profile</h1>
-        
-        <div id="userProfile" class="user-profile">
-            <img id="profilePicture" src="default-avatar.png" alt="Profile Picture">
-            <form id="editProfileForm">
-                <input type="text" id="displayName" placeholder="Display Name" required>
-                <textarea id="bio" placeholder="Bio" required></textarea>
-                <input type="file" id="pfpInput" accept="image/*">
-                <button type="submit" class="filled-button">Update Profile</button>
-            </form>
-            <div id="feedback" class="feedback-message"></div>
+        <div id="error-message" style="color: red; display: none;">
+            Error loading user information.
         </div>
     </div>
-
-  
-    <div id="notLoggedIn" class="not-logged-in">
-        <img src="not-logged-in.png" alt="Not Logged In">
-        <p>You are not logged in. <a href="https://starversevr.xyz/login">Login here</a> to view this page.</p>
-    </div>
-
    
    
 
