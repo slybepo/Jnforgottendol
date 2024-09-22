@@ -1,5 +1,5 @@
 // Initialize PlayFab SDK
-PlayFab.settings.titleId = "YOUR_TITLE_ID";  // Replace with your PlayFab Title ID
+PlayFab.settings.titleId = "467DD";  // Replace with your PlayFab Title ID
 
 document.addEventListener('DOMContentLoaded', function () {
     // Function to get query parameter (PlayFab ID in this case)
