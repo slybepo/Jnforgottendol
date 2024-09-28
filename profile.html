@@ -3,31 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile - Futuristic Design</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="profile.css">
 </head>
 <body>
-   
-    
     <div class="profile-container">
-        <h1>Profile Information</h1>
-
-        <!-- Profile Information -->
-        <div class="profile-info">
-            <p><strong>PlayFab ID:</strong> <span id="playfabId">Loading...</span></p>
-            <p><strong>Display Name:</strong> <span id="displayName">Loading...</span></p>
-            <p><strong>Join Date:</strong> <span id="joinDate">Loading...</span></p>
-            <p><strong>Role:</strong> <span id="userRole">Loading...</span></p>
-        </div>
-
-        <div id="error-message" style="color: red; display: none;">
-            Error loading user information.
-        </div>
+        <h1>User Profile</h1>
+        <p><strong>Username:</strong> <span id="username">Loading...</span></p>
+        <p><strong>Creation Date:</strong> <span id="creationDate">Loading...</span></p>
+        <p><strong>Last Login:</strong> <span id="lastLogin">Loading...</span></p>
+        <p><strong>Role:</strong> <span id="role">Loading...</span></p>
     </div>
-   
-   <div class="neon-bubbles"></div>
-    <script src="login.js"></script>
-    <script src="script.js"></script>
 
     <script src="https://download.playfab.com/PlayFabClientApi.js"></script>
     <script src="profile.js"></script>
