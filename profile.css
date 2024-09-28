@@ -30,3 +30,18 @@ p {
 span {
     color: #00ff00;
 }
+.continue-button {
+    background-color: #ff00ff;  /* Neon purple */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+.continue-button:hover {
+    background-color: #cc00cc;  /* Slightly darker on hover */
+}
