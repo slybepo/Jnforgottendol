@@ -1,4 +1,4 @@
-PlayFab.settings.titleId = "YOUR_PLAYFAB_TITLE_ID";  // Replace with your PlayFab Title ID
+PlayFab.settings.titleId = "467DD";  // Replace with your PlayFab Title ID
 
 // Check if the user is logged in (assume a valid session is stored if PlayFabSessionTicket exists)
 const sessionTicket = localStorage.getItem("PlayFabSessionTicket");
