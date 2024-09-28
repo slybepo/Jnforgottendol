@@ -1,4 +1,4 @@
-PlayFab.settings.titleId = "YOUR_PLAYFAB_TITLE_ID";  // Replace with your PlayFab Title ID
+PlayFab.settings.titleId = "467DD";  // Replace with your PlayFab Title ID
 
 // Get the user ID from the URL parameter
 const urlParams = new URLSearchParams(window.location.search);
