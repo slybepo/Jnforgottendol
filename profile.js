@@ -44,3 +44,8 @@ if (!userId) {
         }
     });
 }
+
+// Continue button functionality
+document.getElementById("continueButton").onclick = function () {
+    window.location.href = "https://starversevr.xyz";
+};
