@@ -1,0 +1,32 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1e1e1e;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.profile-container {
+    text-align: center;
+    background-color: #333;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px #ff00ff;
+}
+
+h1 {
+    color: #ff00ff;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 18px;
+}
+
+span {
+    color: #00ff00;
+}
