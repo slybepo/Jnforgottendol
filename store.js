@@ -49,3 +49,27 @@ document.querySelectorAll('.buy-button').forEach(button => {
         buyItem(itemId, cost);
     });
 });
+
+
+// Retrieve the User ID from local storage
+const userId = localStorage.getItem('playfabUserId');
+
+if (!userId) {
+    // If no user ID is found, redirect to login
+    window.location.href = "login.html";
+} else {
+    // Fetch the user inventory or currency
+    getUserCurrency(userId);
+}
+
+// Function to fetch user currency
+function getUserCurrency(userId) {
+    PlayFabClientSDK.GetUserInventory({ PlayFabId: userId }, function (result, error) {
+        if (result) {
+            const currencyAmount = result.VirtualCurrency.GC; // Assuming 'GC' is the currency code
+            document.getElementById('currencyAmount').textContent = currencyAmount;
+        } else {
+            console.error("Error fetching currency:", error);
+        }
+    });
+}
