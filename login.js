@@ -1,6 +1,6 @@
 
 // Initialize PlayFab SDK
-PlayFab.settings.titleId = "467DD"; // Replace with your PlayFab Title ID
+PlayFab.settings.titleId = "C1ACF"; // Replace with your PlayFab Title ID
 
 document.addEventListener('DOMContentLoaded', function () {
     const loginForm = document.getElementById('loginForm');
