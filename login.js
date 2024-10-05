@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         PlayFabClientSDK.LoginWithEmailAddress(loginRequest, function (result) {
             // Login successful
-            window.location.href = "https://starversevr.xyz/";
+            window.location.href = "https://starversevr.xyz/store";
             feedback.textContent = "Login successful!";
             feedback.style.color = "#00FF00";  // Green for success
             // Redirect or handle successful login here
