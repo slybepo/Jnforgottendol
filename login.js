@@ -1,4 +1,4 @@
-
+/*
 // Initialize PlayFab SDK
 PlayFab.settings.titleId = "467DD"; // Replace with your PlayFab Title ID
 
@@ -53,3 +53,33 @@ function showLoadingScreen() {
 
 // Call the function to show the loading screen when the page loads
 window.onload = showLoadingScreen;
+*/
+PlayFab.settings.titleId = "467DD";  // Replace with your PlayFab Title ID
+
+document.getElementById('loginForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    const loginRequest = {
+        TitleId: PlayFab.settings.titleId,
+        Email: email,
+        Password: password
+    };
+
+    PlayFabClientSDK.LoginWithEmailAddress(loginRequest, function (result, error) {
+        if (result) {
+            console.log("Login successful:", result);
+
+            // Store the PlayFab User ID in local storage
+            const userId = result.data.PlayFabId;
+            localStorage.setItem('playfabUserId', userId);
+            
+            // Redirect or perform other actions
+            window.location.href = "profile.html";  // Redirect to profile or store page after login
+        } else {
+            console.error("Error logging in:", error);
+        }
+    });
+});
