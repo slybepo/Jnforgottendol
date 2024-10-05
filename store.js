@@ -73,3 +73,13 @@ function getUserCurrency(userId) {
         }
     });
 }
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+function addToCart(productName, productPrice) {
+    cart.push({ name: productName, price: productPrice });
+    localStorage.setItem('cart', JSON.stringify(cart));
+    alert(`${productName} has been added to your basket!`);
+}
+
+// Fetch user's currency from PlayFab (you'll need to implement actual PlayFab API calls here)
+document.getElementById('currencyAmount').innerText = 1000;
