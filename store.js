@@ -1,4 +1,4 @@
-PlayFab.settings.titleId = "467DD";  // Replace with your PlayFab Title ID
+PlayFab.settings.titleId = "C1ACF";  // Replace with your PlayFab Title ID
 
 // Function to fetch user currency
 function getUserCurrency() {
@@ -15,7 +15,7 @@ function getUserCurrency() {
 // Function to handle purchasing an item
 function buyItem(itemId, cost) {
     PlayFabClientSDK.SubtractUserVirtualCurrency({
-        VirtualCurrency: "GC",  // Assuming 'GC' is your currency code
+        VirtualCurrency: "SR",  // Assuming 'GC' is your currency code
         Amount: cost
     }, function (result, error) {
         if (result) {
