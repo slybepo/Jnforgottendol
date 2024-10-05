@@ -3,38 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Store</title>
+    <title>Futuristic Store</title>
     <link rel="stylesheet" href="store.css">
 </head>
 <body>
-    <div class="store-container">
-        <h1>Store</h1>
-        <div class="currency-bubble">
-            <img src="coin-logo.png" alt="Coins" class="coin-icon"> 
-            <span id="currencyAmount">1000</span> <!-- Placeholder for user's currency -->
+    <header>
+        <div class="currency-display">
+            <img src="coin.png" alt="Currency Icon" class="currency-icon">
+            <span id="currencyAmount">Loading...</span>
         </div>
+    </header>
 
-        <div class="product-grid">
-            <!-- Example product card -->
-            <div class="product-card">
+    <div class="store-container">
+        <!-- Product Card 1 -->
+        <div class="product-card" data-item-id="item1">
+            <div class="card-content">
                 <img src="product1.png" alt="Product 1" class="product-image">
-                <div class="product-info">
-                    <h2 class="product-name">Product 1</h2>
-                    <span class="product-price">100 Coins</span>
-                </div>
-                <div class="hover-description">
-                    <p>This is a cool product description that appears on hover.</p>
-                </div>
-                <div class="add-to-basket">
-                    <button class="add-button" onclick="addToCart('Product 1', 100)">+ Add to Basket</button>
+                <div class="card-overlay">
+                    <h2>Product 1</h2>
+                    <p>Awesome futuristic product description here.</p>
+                    <div class="product-price">
+                        <span>100</span> Coins
+                    </div>
+                    <button class="buy-button">Buy Now</button>
                 </div>
             </div>
-            <!-- Repeat similar structure for other products -->
         </div>
 
-        <a href="cart.html" class="cart-link">Cart</a>
+        <!-- Product Card 2 -->
+        <div class="product-card" data-item-id="item2">
+            <div class="card-content">
+                <img src="product2.png" alt="Product 2" class="product-image">
+                <div class="card-overlay">
+                    <h2>Product 2</h2>
+                    <p>Another amazing futuristic product description here.</p>
+                    <div class="product-price">
+                        <span>200</span> Coins
+                    </div>
+                    <button class="buy-button">Buy Now</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add more cards as needed -->
     </div>
 
+    <script src="https://download.playfab.com/PlayFabClientApi.js"></script>
     <script src="store.js"></script>
 </body>
 </html>
