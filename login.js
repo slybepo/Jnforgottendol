@@ -5,7 +5,7 @@ PlayFab.settings.titleId = "467DD"; // Replace with your PlayFab Title ID
 document.addEventListener('DOMContentLoaded', function () {
     const loginForm = document.getElementById('loginForm');
     const feedback = document.getElementById('feedback');
-
+event.preventDefault();
     loginForm.addEventListener('submit', function (e) {
         e.preventDefault();
 
