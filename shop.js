@@ -1,28 +1,51 @@
 PlayFab.settings.titleId = "467DD";  // Replace with your PlayFab Title ID
 
-// Check if the user is logged in (assume a valid session is stored if PlayFabSessionTicket exists)
-const sessionTicket = localStorage.getItem("PlayFabSessionTicket");
-
-if (sessionTicket) {
-    const request = {
-        SessionTicket: sessionTicket
-    };
-
-    PlayFabClientSDK.GetAccountInfo(request, function(result, error) {
+// Function to fetch user currency
+function getUserCurrency() {
+    PlayFabClientSDK.GetUserInventory({}, function (result, error) {
         if (result) {
-            console.log("User is logged in", result);
-            document.getElementById("shop").style.display = "block";
-            document.getElementById("notLoggedIn").style.display = "none";
+            const currencyAmount = result.VirtualCurrency.GC; // Assuming 'GC' is the currency code
+            document.getElementById('currencyAmount').textContent = currencyAmount;
         } else {
-            console.error("Session expired or invalid.", error);
-            redirectToLogin();
+            console.error("Error fetching currency:", error);
         }
     });
-} else {
-    redirectToLogin();
 }
 
-function redirectToLogin() {
-    document.getElementById("shop").style.display = "none";
-    document.getElementById("notLoggedIn").style.display = "block";
+// Function to handle purchasing an item
+function buyItem(itemId, cost) {
+    PlayFabClientSDK.SubtractUserVirtualCurrency({
+        VirtualCurrency: "GC",  // Assuming 'GC' is your currency code
+        Amount: cost
+    }, function (result, error) {
+        if (result) {
+            // Grant the user the item after successfully subtracting currency
+            PlayFabClientSDK.GrantItemsToUser({
+                ItemIds: [itemId],
+            }, function (grantResult, grantError) {
+                if (grantResult) {
+                    alert("Item purchased successfully!");
+                    getUserCurrency(); // Update currency display
+                } else {
+                    console.error("Error granting item:", grantError);
+                }
+            });
+        } else {
+            console.error("Error purchasing item:", error);
+        }
+    });
 }
+
+// Call this function on page load to get the user's currency
+getUserCurrency();
+
+// Handle buy button clicks
+document.querySelectorAll('.buy-button').forEach(button => {
+    button.addEventListener('click', function () {
+        const productCard = this.closest('.product-card');
+        const itemId = productCard.getAttribute('data-item-id');
+        const cost = parseInt(productCard.querySelector('.product-price span').textContent, 10);
+
+        buyItem(itemId, cost);
+    });
+});
