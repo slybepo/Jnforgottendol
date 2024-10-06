@@ -66,7 +66,7 @@ if (!userId) {
 function getUserCurrency(userId) {
     PlayFabClientSDK.GetUserInventory({ PlayFabId: userId }, function (result, error) {
         if (result) {
-            const currencyAmount = result.VirtualCurrency.GC; // Assuming 'GC' is the currency code
+            const currencyAmount = result.VirtualCurrency.SR; // Assuming 'GC' is the currency code
             document.getElementById('currencyAmount').textContent = currencyAmount;
         } else {
             console.error("Error fetching currency:", error);
