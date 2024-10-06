@@ -4,7 +4,7 @@ PlayFab.settings.titleId = "C1ACF";  // Replace with your PlayFab Title ID
 function getUserCurrency() {
     PlayFabClientSDK.GetUserInventory({}, function (result, error) {
         if (result) {
-            const currencyAmount = result.VirtualCurrency.GC; // Assuming 'GC' is the currency code
+            const currencyAmount = result.VirtualCurrency.SR; // Assuming 'GC' is the currency code
             document.getElementById('currencyAmount').textContent = currencyAmount;
         } else {
             console.error("Error fetching currency:", error);
