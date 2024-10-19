@@ -1,45 +1,36 @@
-// Event listener for login form submission
-document.getElementById("loginForm").addEventListener("submit", async function(event) {
-    event.preventDefault(); // Prevent form submission (reload)
+document.getElementById("loginForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent form submission reload
 
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
-    // Show loading screen
+    // Show loading indicator
     document.getElementById("loading-screen").style.display = "block";
+    
+    const loginRequest = {
+        TitleId: "C1ACF", // Replace with your actual PlayFab Title ID
+        Email: email,
+        Password: password
+    };
 
-    try {
-        // PlayFab login request
-        const loginRequest = {
-            TitleId: "C1ACF", // Replace with your PlayFab Title ID
-            Email: email,
-            Password: password,
-        };
+    PlayFabClientSDK.LoginWithEmailAddress(loginRequest, function(result, error) {
+        if (result && result.data) {
+            // Success: login succeeded
+            console.log("Login successful", result);
 
-        PlayFabClientSDK.LoginWithEmailAddress(loginRequest, (result, error) => {
-            if (result) {
-                // Successfully logged in, redirect to the next page
-                console.log("Login successful: ", result);
-                
-                // Optionally save the PlayFab session or user info to local storage for later use
-                localStorage.setItem('playfabSessionTicket', result.data.SessionTicket);
-                localStorage.setItem('playfabUserId', result.data.PlayFabId);
+            // Store PlayFab session and ID
+            localStorage.setItem('playfabSessionTicket', result.data.SessionTicket);
+            localStorage.setItem('playfabUserId', result.data.PlayFabId);
 
-                // Hide loading screen
-                document.getElementById("loading-screen").style.display = "none";
+            // Redirect to a new page (e.g., profile page)
+            window.location.href = "profile.html";
+        } else {
+            // Error: login failed
+            console.error("Login failed", error);
+            document.getElementById("feedback").textContent = "Login failed: " + (error.errorMessage || "Unknown error");
+        }
 
-                // Redirect to a specific page (e.g., profile page)
-                window.location.href = "https://starversevr.xyz/profile";
-            } else {
-                // Show error feedback
-                console.error("Error during login:", error);
-                document.getElementById("feedback").textContent = "Login failed. Please check your credentials.";
-                document.getElementById("loading-screen").style.display = "none";
-            }
-        });
-    } catch (err) {
-        console.error("Error in login process:", err);
+        // Hide loading screen after processing
         document.getElementById("loading-screen").style.display = "none";
-        document.getElementById("feedback").textContent = "An error occurred. Please try again.";
-    }
+    });
 });
