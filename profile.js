@@ -1,6 +1,6 @@
 // Fetch PlayFab information when the page loads
 window.onload = function () {
-    const playerId = localStorage.getItem('playFabId'); // Assume the PlayFab ID is stored after login
+    const playerId = localStorage.getItem('playfabUserId'); // Assume the PlayFab ID is stored after login
     if (!playerId) {
         window.location.href = "https://starversevr.xyz/login"; // Redirect to login if not logged in
     } else {
