@@ -2,7 +2,7 @@
 window.onload = function () {
     const playerId = localStorage.getItem('playFabId'); // Assume the PlayFab ID is stored after login
     if (!playerId) {
-        window.location.href = "login.html"; // Redirect to login if not logged in
+        window.location.href = "https://starversevr.xyz/login"; // Redirect to login if not logged in
     } else {
         fetchPlayerProfile(playerId);
         fetchCurrency(playerId);
