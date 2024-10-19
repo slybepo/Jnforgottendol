@@ -4,13 +4,33 @@ window.onload = function () {
     if (!playerId) {
         window.location.href = "https://starversevr.xyz/login"; // Redirect to login if not logged in
     } else {
-        fetchPlayerProfile(playerId);
-        fetchCurrency(playerId);
+        // Fetch user account information (username, email, etc.)
+PlayFabClientSDK.GetAccountInfo({}, function(result, error) {
+    if (result) {
+        // Successfully fetched username
+        const username = result.data.AccountInfo.Username;
+        document.getElementById('username').innerText = username;
+    } else {
+        console.error("Failed to fetch username:", error);
+    }
+});
+
+// Fetch virtual currency
+PlayFabClientSDK.GetUserInventory({}, function(result, error) {
+    if (result) {
+        // Successfully fetched currency
+        const currency = result.VirtualCurrency.CURRENCY_CODE; // Replace with actual currency code
+        document.getElementById('currency').innerText = currency;
+    } else {
+        console.error("Failed to fetch currency:", error);
+    }
+});
+;
     }
 };
 
 // Function to fetch player profile
-function fetchPlayerProfile(playerId) {
+/*function fetchPlayerProfile(playerId) {
     PlayFabClientSDK.GetAccountInfo({}, function (result, error) {
         if (result) {
             const username = result.data.AccountInfo.Username;
@@ -32,6 +52,8 @@ function fetchCurrency(playerId) {
         }
     });
 }
+*/
+// Fetch user account information (username, email, etc.)
 
 // Handle username update
 document.getElementById("updateUsernameForm").addEventListener("submit", function (event) {
