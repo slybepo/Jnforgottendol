@@ -20,9 +20,7 @@ event.preventDefault();
 
         PlayFabClientSDK.LoginWithEmailAddress(loginRequest, function (result) {
             // Login successful
-            window.location.href = "https://starversevr.xyz/store";
-            feedback.textContent = "Login successful!";
-            feedback.style.color = "#00FF00";  // Green for success
+             // Green for success
             // Redirect or handle successful login here
            /* const userId = result.data.PlayFabId; // Get the PlayFab User ID
             const currentUrl = window.location.origin; // Get the current domain
@@ -34,13 +32,15 @@ event.preventDefault();
             
          if (result) {
             console.log("Login successful:", result);
-
+window.location.href = "https://starversevr.xyz/store";
+            feedback.textContent = "Login successful!";
+            feedback.style.color = "#00FF00"; 
             // Store PlayFab User ID in local storage
             const userId = result.data.PlayFabId;
             localStorage.setItem('playfabUserId', userId);
 
             // Redirect to profile or store page after successful login
-            window.location.href = "store.html";
+            
         }, function (error) {
             // Login failed
             feedback.textContent = `Error: ${error.errorMessage}`;
