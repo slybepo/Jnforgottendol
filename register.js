@@ -1,6 +1,7 @@
 document.getElementById("registerForm").addEventListener("submit", function(event) {
     event.preventDefault(); // Prevent form submission reload
 
+    const username = document.getElementById("username").value;
     const email = document.getElementById("registerEmail").value;
     const password = document.getElementById("registerPassword").value;
 
@@ -11,7 +12,7 @@ document.getElementById("registerForm").addEventListener("submit", function(even
         TitleId: "C1ACF", // Replace with your PlayFab Title ID
         Email: email,
         Password: password,
-        RequireBothUsernameAndEmail: false // Set to true if you want to require usernames
+        Username: username
     };
 
     PlayFabClientSDK.RegisterPlayFabUser(registerRequest, function(result, error) {
@@ -19,7 +20,7 @@ document.getElementById("registerForm").addEventListener("submit", function(even
             // Success: registration succeeded
             console.log("Registration successful", result);
 
-            // Automatically log in the user or redirect to the login page
+            // Redirect user to login page or any other page
             window.location.href = "login.html";
         } else {
             // Error: registration failed
