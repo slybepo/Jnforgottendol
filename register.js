@@ -1,33 +1,33 @@
-PlayFab.settings.titleId = "C1ACF"; // Replace with your PlayFab Title ID
+document.getElementById("registerForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent form submission reload
 
-document.addEventListener('DOMContentLoaded', function () {
-    const registerForm = document.getElementById('registerForm');
-    const feedback = document.getElementById('feedback');
+    const email = document.getElementById("registerEmail").value;
+    const password = document.getElementById("registerPassword").value;
 
-    registerForm.addEventListener('submit', function (e) {
-        e.preventDefault();
+    // Show loading indicator
+    document.getElementById("loading-screen").style.display = "block";
+    
+    const registerRequest = {
+        TitleId: "C1ACF", // Replace with your PlayFab Title ID
+        Email: email,
+        Password: password,
+        RequireBothUsernameAndEmail: false // Set to true if you want to require usernames
+    };
 
-        const username = document.getElementById('username').value;
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
+    PlayFabClientSDK.RegisterPlayFabUser(registerRequest, function(result, error) {
+        if (result && result.data) {
+            // Success: registration succeeded
+            console.log("Registration successful", result);
 
-        // Register user using PlayFab
-        const registrationRequest = {
-            Username: username,
-            Email: email,
-            Password: password,
-            RequireBothUsernameAndEmail: true,
-        };
-
-        PlayFabClientSDK.RegisterPlayFabUser(registrationRequest, function (result) {
-            // Registration successful
+            // Automatically log in the user or redirect to the login page
             window.location.href = "login.html";
-            feedback.textContent = "Registration successful!";
-            feedback.style.color = "#00FF00";  // Green for success
-        }, function (error) {
-            // Registration failed
-            feedback.textContent = `Error: ${error.errorMessage}`;
-            feedback.style.color = "#FF0000";  // Red for error
-        });
+        } else {
+            // Error: registration failed
+            console.error("Registration failed", error);
+            document.getElementById("registerFeedback").textContent = "Registration failed: " + (error.errorMessage || "Unknown error");
+        }
+
+        // Hide loading screen after processing
+        document.getElementById("loading-screen").style.display = "none";
     });
 });
