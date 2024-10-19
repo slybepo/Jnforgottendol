@@ -7,11 +7,32 @@
     <link rel="stylesheet" href="styles.css">
 </head>
     <body> 
+            <style>
+        .container {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
+        .container p {
+            margin: 0;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .container img {
+            display: block;
+            margin-top: 5px;
+            max-width: 100px; /* Adjust width as needed */
+            height: auto;
+        }
+            </style>
         <div> 
-            <footer> In collaboration with </footer>
-        <image id="" allowtransparency="true" src="https://i.ibb.co/4grdV7t/Sans-titre-4-20241019151615.png" style="width: 100%; height: 660px; border: none;"></image></div>
-    </body>
-    
+            
+    <div class="container">
+    <p> in collaboration with </p>
+    <img src="https://i.ibb.co/4grdV7t/Sans-titre-4-20241019151615.png" alt="Image Description">
+    </div>
 <body>
     <div class="login-container">
         <h1>Login</h1>
@@ -24,7 +45,7 @@
         <div id="feedback" class="feedback-message"></div>
     </div>
     <div>
-        
+     
     </div>
  
     <script src="https://download.playfab.com/PlayFabClientApi.js"></script>
