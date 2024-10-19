@@ -23,7 +23,7 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
             localStorage.setItem('playfabUserId', result.data.PlayFabId);
 
             // Redirect to a new page (e.g., profile page)
-            window.location.href = "profile.html";
+            window.location.href = "https://starversevr.xyz/";
         } else {
             // Error: login failed
             console.error("Login failed", error);
