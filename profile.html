@@ -3,21 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
-    <link rel="stylesheet" href="profile.css">
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="profile-container">
-        <h1>User Profile</h1>
-        <p><strong>Username:</strong> <span id="username">Loading...</span></p>
-        <p><strong>Creation Date:</strong> <span id="creationDate">Loading...</span></p>
-        <p><strong>Last Login:</strong> <span id="lastLogin">Loading...</span></p>
-        <p><strong>Role:</strong> <span id="role">Loading...</span></p>
-        
-        <!-- Continue Button -->
-        <button id="continueButton" class="continue-button">Continue</button>
+        <!-- Left card for user currency and info -->
+        <div class="user-info-card">
+            <h2 id="usernameDisplay">Username: Loading...</h2>
+            <p id="currencyDisplay">Currency: Loading...</p>
+            
+            <!-- Modify username form -->
+            <h3>Modify Username</h3>
+            <form id="updateUsernameForm">
+                <input type="text" id="newUsername" placeholder="Enter new username">
+                <button type="submit" class="filled-button">Update Username</button>
+            </form>
+
+            <div id="feedback" class="feedback-message"></div>
+        </div>
+
+        <!-- Right navigation bar -->
+        <div class="navbar-container">
+            <input type="text" id="searchBar" placeholder="Search for a page...">
+            <ul id="searchResults"></ul>
+        </div>
+
     </div>
 
+    <!-- PlayFab SDK -->
     <script src="https://download.playfab.com/PlayFabClientApi.js"></script>
     <script src="profile.js"></script>
 </body>
