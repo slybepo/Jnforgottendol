@@ -52,7 +52,7 @@ document.querySelectorAll('.buy-button').forEach(button => {
 
 
 // Retrieve the User ID from local storage
-const userId = localStorage.getItem('playfabUserId');
+const userId = localStorage.getItem('playFabId');
 
 if (!userId) {
     // If no user ID is found, redirect to login
