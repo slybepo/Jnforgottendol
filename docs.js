@@ -1,5 +1,17 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const sections = document.querySelectorAll('.fade-in');
+    // Sidebar toggle functionality for categories
+    const toggles = document.querySelectorAll('.category-toggle');
+    toggles.forEach(toggle => {
+        toggle.addEventListener('click', function () {
+            const siblingList = this.nextElementSibling;
+            if (siblingList) {
+                siblingList.style.display = siblingList.style.display === 'block' ? 'none' : 'block';
+            }
+        });
+    });
+
+    // Fade-in animation when scrolling
+    const sections = document.querySelectorAll('.doc-card');
 
     const observer = new IntersectionObserver(
         (entries) => {
