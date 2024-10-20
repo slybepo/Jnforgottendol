@@ -93,3 +93,81 @@ document.getElementById("searchBar").addEventListener("input", function () {
         searchResults.appendChild(li);
     });
 });
+
+
+
+
+
+
+
+
+
+
+const titleId = "YOUR_PLAYFAB_TITLE_ID"; // Replace with your PlayFab Title ID
+const sessionTicket = localStorage.getItem('SessionTicket'); // Replace with the session ticket obtained after login
+
+// Define the API URL
+const url = `https://${titleId}.playfabapi.com/Client/GetUserAccountInfo`;
+
+// Set up the request to PlayFab
+async function getUserAccountInfo() {
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+                "X-Authentication": sessionTicket // Session ticket for the logged-in user
+            },
+            body: JSON.stringify({})
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to retrieve user info');
+        }
+
+        const data = await response.json();
+
+        // Extract username and currency info from the response
+        const username = data.data.UserInfo.Username;
+        const playFabId = data.data.UserInfo.PlayFabId;
+
+        console.log(`Username: ${username}, PlayFabId: ${playFabId}`);
+
+        // If you need to get user currency balance, use GetUserInventory API
+        await getUserCurrency(playFabId);
+
+    } catch (error) {
+        console.error('Error fetching user account info:', error);
+    }
+}
+
+async function getUserCurrency(playFabId) {
+    try {
+        const currencyUrl = `https://${titleId}.playfabapi.com/Client/GetUserInventory`;
+
+        const response = await fetch(currencyUrl, {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+                "X-Authentication": sessionTicket
+            },
+            body: JSON.stringify({})
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to retrieve user currency');
+        }
+
+        const currencyData = await response.json();
+
+        const virtualCurrency = currencyData.data.VirtualCurrency;
+        console.log('Currency: ', virtualCurrency); // Output virtual currency balances
+
+    } catch (error) {
+        console.error('Error fetching user currency:', error);
+    }
+}
+
+// Call the function to get the user account info and currency
+getUserAccountInfo();
+    
