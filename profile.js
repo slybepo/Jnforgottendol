@@ -126,7 +126,7 @@ async function getUserAccountInfo() {
         const username = data.data.UserInfo.Username;
         const playFabId = data.data.UserInfo.PlayFabId;
         document.getElementById('usernameDisplay').innerText = ` hello ${username}!`;
-
+        localStorage.setItem('name', data.data.UserInfo.Username);
         console.log(`Username: ${username}, PlayFabId: ${playFabId}`);
 
         // If you need to get user currency balance, use GetUserInventory API
