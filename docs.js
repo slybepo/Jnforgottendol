@@ -1,10 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
     // Sidebar toggle functionality for categories
     const toggles = document.querySelectorAll('.category-toggle');
+    
     toggles.forEach(toggle => {
         toggle.addEventListener('click', function () {
             const siblingList = this.nextElementSibling;
-            if (siblingList) {
+            if (siblingList && siblingList.classList.contains('docs-list')) {
                 siblingList.style.display = siblingList.style.display === 'block' ? 'none' : 'block';
             }
         });
