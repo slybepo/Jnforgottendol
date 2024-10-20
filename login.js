@@ -13,6 +13,7 @@ document.getElementById('loginForm').addEventListener('submit', function (event)
         if (result) {
             // Store PlayFabId in localStorage to persist user login
             localStorage.setItem('playFabId', result.data.PlayFabId);
+            localStorage.setItem('SessionTicket', result.data.SessionTicket);
             console.log("Login successful! PlayFabId: ", result.data.PlayFabId);
             
             // Redirect to profile or another page after login
