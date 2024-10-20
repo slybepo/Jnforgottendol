@@ -4,7 +4,7 @@ window.onload = function () {
     if (!playerId) {
         window.location.href = "https://starversevr.xyz/login"; // Redirect to login if not logged in
     } else {
-        getUserAccount()
+        getUserAccountInfo()
         
         // Fetch user account information (username, email, etc.)
 
