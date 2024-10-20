@@ -4,7 +4,7 @@ window.onload = function () {
     if (!playerId) {
         window.location.href = "https://starversevr.xyz/login"; // Redirect to login if not logged in
     } else {
-        getUserAccountInfo()
+        getUserAccountInfo();
         
         // Fetch user account information (username, email, etc.)
 
@@ -125,7 +125,7 @@ async function getUserAccountInfo() {
         // Extract username and currency info from the response
         const username = data.data.UserInfo.Username;
         const playFabId = data.data.UserInfo.PlayFabId;
-        document.getElementById('usernameDisplay').innerText = ` hello ${username}!;
+        document.getElementById('usernameDisplay').innerText = ` hello ${username}!`;
 
         console.log(`Username: ${username}, PlayFabId: ${playFabId}`);
 
@@ -164,6 +164,5 @@ async function getUserCurrency(playFabId) {
     }
 }
 
-// Call the function to get the user account info and currency
-getUserAccountInfo();
+
     
