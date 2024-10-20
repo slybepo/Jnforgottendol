@@ -61,6 +61,10 @@ body {
     padding-left: 20px;
 }
 
+.docs-list li {
+    margin-top: 5px;
+}
+
 .category-toggle {
     cursor: pointer;
 }
