@@ -17,7 +17,7 @@ document.getElementById('loginForm').addEventListener('submit', function (event)
             console.log("Login successful! PlayFabId: ", result.data.PlayFabId);
             
             // Redirect to profile or another page after login
-            window.location.href = "profile.html";
+            window.location.href = "https://starversvr.xyz/";
         } else {
             document.getElementById('feedback').innerText = "Login failed. Please check your credentials.";
             console.error("Login error: ", error);
