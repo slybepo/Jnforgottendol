@@ -158,7 +158,7 @@ async function getUserCurrency(playFabId) {
 
         const virtualCurrency = currencyData.data.VirtualCurrency;
         console.log('Currency: ', virtualCurrency); // Output virtual currency balances
-        document.getElementById('currency').innerText = virtualCurrency;
+        document.getElementById('currencyDisplay').innerText = virtualCurrency;
     } catch (error) {
         console.error('Error fetching user currency:', error);
     }
