@@ -4,17 +4,12 @@ window.onload = function () {
     if (!playerId) {
         window.location.href = "https://starversevr.xyz/login"; // Redirect to login if not logged in
     } else {
+        getUserAccount()
+        
         // Fetch user account information (username, email, etc.)
-PlayFabClientSDK.GetAccountInfo({}, function(result, error) {
-    if (result) {
-        // Successfully fetched username
-        const username = result.data.AccountInfo.Username;
-        document.getElementById('username').innerText = username;
-    } else {
-        console.error("Failed to fetch username:", error);
-    }
-});
 
+});
+/*
 // Fetch virtual currency
 PlayFabClientSDK.GetUserInventory({}, function(result, error) {
     if (result) {
@@ -27,7 +22,7 @@ PlayFabClientSDK.GetUserInventory({}, function(result, error) {
 });
 ;
     }
-};
+};*/
 
 // Function to fetch player profile
 /*function fetchPlayerProfile(playerId) {
@@ -103,7 +98,7 @@ document.getElementById("searchBar").addEventListener("input", function () {
 
 
 
-const titleId = "YOUR_PLAYFAB_TITLE_ID"; // Replace with your PlayFab Title ID
+const titleId = "C1ACF"; // Replace with your PlayFab Title ID
 const sessionTicket = localStorage.getItem('SessionTicket'); // Replace with the session ticket obtained after login
 
 // Define the API URL
@@ -130,6 +125,7 @@ async function getUserAccountInfo() {
         // Extract username and currency info from the response
         const username = data.data.UserInfo.Username;
         const playFabId = data.data.UserInfo.PlayFabId;
+        document.getElementById('username').innerText = username;
 
         console.log(`Username: ${username}, PlayFabId: ${playFabId}`);
 
@@ -162,7 +158,7 @@ async function getUserCurrency(playFabId) {
 
         const virtualCurrency = currencyData.data.VirtualCurrency;
         console.log('Currency: ', virtualCurrency); // Output virtual currency balances
-
+        document.getElementById('currency').innerText = virtualCurrency;
     } catch (error) {
         console.error('Error fetching user currency:', error);
     }
