@@ -19,7 +19,7 @@ PlayFabClientSDK.GetAccountInfo({}, function(result, error) {
 PlayFabClientSDK.GetUserInventory({}, function(result, error) {
     if (result) {
         // Successfully fetched currency
-        const currency = result.VirtualCurrency.CURRENCY_CODE; // Replace with actual currency code
+        const currency = result.VirtualCurrency.SR; // Replace with actual currency code
         document.getElementById('currency').innerText = currency;
     } else {
         console.error("Failed to fetch currency:", error);
@@ -41,7 +41,6 @@ PlayFabClientSDK.GetUserInventory({}, function(result, error) {
     });
 }
 
-// Function to fetch currency
 function fetchCurrency(playerId) {
     PlayFabClientSDK.GetUserInventory({}, function (result, error) {
         if (result) {
@@ -53,9 +52,7 @@ function fetchCurrency(playerId) {
     });
 }
 */
-// Fetch user account information (username, email, etc.)
 
-// Handle username update
 document.getElementById("updateUsernameForm").addEventListener("submit", function (event) {
     event.preventDefault();
     const newUsername = document.getElementById("newUsername").value;
@@ -73,7 +70,7 @@ document.getElementById("updateUsernameForm").addEventListener("submit", functio
     }
 });
 
-// Search functionality
+
 document.getElementById("searchBar").addEventListener("input", function () {
     const searchQuery = this.value.toLowerCase();
     const pages = [
@@ -85,7 +82,7 @@ document.getElementById("searchBar").addEventListener("input", function () {
 
     const filteredPages = pages.filter(page => page.name.toLowerCase().includes(searchQuery));
     const searchResults = document.getElementById("searchResults");
-    searchResults.innerHTML = ""; // Clear previous results
+    searchResults.innerHTML = "";
 
     filteredPages.forEach(page => {
         const li = document.createElement("li");
