@@ -125,7 +125,7 @@ async function getUserAccountInfo() {
         // Extract username and currency info from the response
         const username = data.data.UserInfo.Username;
         const playFabId = data.data.UserInfo.PlayFabId;
-        document.getElementById('usernameDisplay').innerText = username;
+        document.getElementById('usernameDisplay').innerText = ` hello ${username}!;
 
         console.log(`Username: ${username}, PlayFabId: ${playFabId}`);
 
