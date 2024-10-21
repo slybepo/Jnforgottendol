@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord Dashboard</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Servers</h2>
+        <ul id="server-list">
+           
+        </ul>
+    </div>
+    <div class="main-content">
+        <h1>Welcome, <span id="username"></span></h1>
+        <img id="avatar" alt="Profile Picture">
+        <p>ID: <span id="userid"></span></p>
+
+        <div id="analytics">
+       
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const response = await fetch('/dashboard');
+            const data = await response.json();
+
+            
+            document.getElementById('username').textContent = data.username;
+            document.getElementById('userid').textContent = data.id;
+            document.getElementById('avatar').src = `https://cdn.discordapp.com/avatars/${data.id}/${data.avatar}.png`;
+
+           
+            const serverList = document.getElementById('server-list');
+            data.guilds.forEach(guild => {
+                const li = document.createElement('li');
+                li.textContent = guild.name;
+                li.addEventListener('click', () => {
+                    loadServerAnalytics(guild.id);
+                });
+                serverList.appendChild(li);
+            });
+        });
+
+        async function loadServerAnalytics(guildId) {
+          
+            const response = await fetch(`/guild-analytics/${guildId}`);
+            const data = await response.json();
+
+           
+            const analyticsDiv = document.getElementById('analytics');
+            analyticsDiv.innerHTML = `
+                <h2>${data.guildName} Analytics</h2>
+                <div class="card">Members: ${data.members}</div>
+                <div class="card">Messages (Past Week): ${data.messages}</div>
+                <div class="card">Bans (Past Week): ${data.bans}</div>
+                <h3>Staff Members</h3>
+                <ul>
+                    ${data.staff.map(staff => `<li>${staff.username}</li>`).join('')}
+                </ul>
+            `;
+        }
+    </script>
+</body>
+</html>
