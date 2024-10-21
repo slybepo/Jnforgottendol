@@ -9,8 +9,8 @@ const app = express();
 
 // Discord OAuth2 configuration
 passport.use(new DiscordStrategy({
-    clientID: process.env.DISCORD_CLIENT_ID,
-    clientSecret: process.env.DISCORD_CLIENT_SECRET,
+    clientID: secrets.Client,
+    clientSecret: secrets.Secret,
     callbackURL: 'http://localhost:3000/callback',
     scope: ['identify', 'guilds']
 }, function (accessToken, refreshToken, profile, done) {
