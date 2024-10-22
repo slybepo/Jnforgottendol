@@ -1,7 +1,7 @@
 <script src="https://download.playfabapi.com/PlayFabClientApi.js"></script>
 <script>
-    const TITLE_ID = "2F588"; // Your PlayFab title ID
-    const ADMIN_IDS = ['ADMIN_PLAYFABID_1', 'ADMIN_PLAYFABID_2']; // IDs of admins
+    const TITLE_ID = "C1ACF"; // Your PlayFab title ID
+    const ADMIN_IDS = ['FD3651A0B2636E6B']; // IDs of admins
 
     // Login function
     function login(customId) {
@@ -134,7 +134,7 @@
 
     // Call login on page load (using a sample custom ID)
     window.onload = () => {
-        login("SAMPLE_PLAYER_ID"); 
+        login("FD3651A0B2636E6B"); 
         loadFeaturedItems();
     };
 </script>
