@@ -1,6 +1,6 @@
 <script src="https://download.playfabapi.com/PlayFabClientApi.js"></script>
 <script>
-    const TITLE_ID = "YOUR_PLAYFAB_TITLE_ID"; // Your PlayFab title ID
+    const TITLE_ID = "2F588"; // Your PlayFab title ID
     const ADMIN_IDS = ['ADMIN_PLAYFABID_1', 'ADMIN_PLAYFABID_2']; // IDs of admins
 
     // Login function
@@ -87,7 +87,7 @@
         let buyerId = prompt("Enter your PlayFab ID to buy:");
         if (buyerId) {
             PlayFabClientSDK.SubtractUserVirtualCurrency({
-                VirtualCurrency: "CO", // Example currency code
+                VirtualCurrency: "SR", // Example currency code
                 Amount: price
             }, (result) => {
                 console.log("Currency subtracted, purchase successful:", result);
