@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Store</title>
+    <link rel="stylesheet" href="store-styles.css">
+</head>
+<body>
+    <header>
+        <h1>Game Store</h1>
+    </header>
+
+    <section class="sell-item">
+        <h2>Resell Your Cosmetic</h2>
+        <form id="sellForm">
+            <label for="itemName">Item Name:</label>
+            <input type="text" id="itemName" name="itemName" required>
+            
+            <label for="price">Price:</label>
+            <input type="number" id="price" name="price" required>
+            
+            <label for="itemId">Item ID:</label>
+            <input type="text" id="itemId" name="itemId" required>
+
+            <label for="playFabId">Your PlayFab ID:</label>
+            <input type="text" id="playFabId" name="playFabId" required>
+            
+            <label for="itemImage">Upload Item Image:</label>
+            <input type="file" id="itemImage" name="itemImage" accept="image/*" required>
+
+            <button type="button" id="confirmSale">Are you sure you want to set this item on sale?</button>
+        </form>
+    </section>
+
+    <section class="featured-items">
+        <h2>Featured Items</h2>
+        <div class="product-grid" id="featuredGrid">
+            <!-- Featured items dynamically loaded here -->
+        </div>
+    </section>
+
+    <section class="player-sales">
+        <h2>Player Sales</h2>
+        <div class="product-grid" id="salesGrid">
+            <!-- Player listed items dynamically loaded here -->
+        </div>
+    </section>
+
+    <script src="store-script.js"></script>
+</body>
+              </html>
+              
