@@ -1,12 +1,12 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background: linear-gradient(to right, blue, red);
     margin: 0;
     padding: 0;
 }
 
 header {
-    background-color: #333;
+    background: linear-gradient(to right, orange, blue);
     color: white;
     padding: 20px;
     text-align: center;
@@ -34,8 +34,10 @@ form input {
 
 form button {
     padding: 15px;
-    background-color: #ff9900;
-    border: none;
+    background-color: rgb(100, 0, 57);
+    border-radius: 7px;
+    border-style: solid;
+    border-image: linear-gradient(to right, red, pink);
     color: white;
     cursor: pointer;
 }
