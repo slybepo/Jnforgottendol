@@ -1,121 +1,127 @@
-body, html {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            height: 100%;
-        
-            display: flex;
-            flex-direction: column;
-        }
-        body {
-            background-image: url('https://i.ibb.co/7JxGK3D/steve-johnson-r-YYkv-S7-Rs-Lg-unsplash.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            color: white;
-            
-        }
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0.6);
-        }
-
-        .logo img {
-            width: 150px;
-        }
-
-        nav {
-            display: flex;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            padding: 10px;
-            margin-left: 20px;
-            position: relative;
-        }
-
-        nav a:hover::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: white;
-        }
-
-        .content {
-            flex-grow: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .card {
-            background: rgba(255, 255, 255, 0);
-            border-radius: 16px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(2.9px);
-            -webkit-backdrop-filter: blur(2.9px);
-            border: 1px solid rgba(255, 255, 255, 0.68);
-            padding: 40px;
-            text-align: center;
-            max-width: 400px;
-            margin: 20px;
-            
-        }
-
-        h1 {
-            font-size: 36px;
-            margin-bottom: 20px;
-        }
-
-        p {
-            font-size: 18px;
-        }
-
-        .footer {
-            background-color: rgba(0, 0, 0, 0.6);
-            padding: 10px;
-            text-align: center;
-            color: white;
-            position: relative;
-        }
-
-        .footer a {
-            color: white;
-            text-decoration: none;
-            margin: 0 10px;
-        }
-
-        .footer a:hover {
-            text-decoration: underline;
-        }
-        :root {
-            --input-color: #9ee5ff;
-            --secondary-color: #b0d9ff;
-            --text: #91ebb2
-        }
-.input{
-    border-left:none;
-    border-color: black;
-    border-width: 1px;
-    align-items: center;
-    border-radius: 2px;
-    height: 30px;
-    width: 100px;
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
     display: flex;
-    margin-left: 10px;
-    color: var(--text);
-    
-    background-color: var(--input-color);
-    
-    
-    
-                          }
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: 250px;
+    background-color: #0a84ff;
+    color: white;
+    padding: 20px;
+    position: fixed;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.sidebar-header {
+    margin-bottom: 20px;
+}
+
+.sidebar h2 {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.sidebar nav ul {
+    list-style: none;
+}
+
+.sidebar nav ul li {
+    margin: 10px 0;
+}
+
+.sidebar nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 8px;
+    display: block;
+    transition: background-color 0.3s;
+}
+
+.sidebar nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
+
+.docs-list {
+    display: none;
+    padding-left: 20px;
+}
+
+.docs-list li {
+    margin-top: 5px;
+}
+
+.category-toggle {
+    cursor: pointer;
+}
+
+.category-toggle:hover {
+    color: #f0f0f0;
+}
+
+/* Content Area */
+.content {
+    margin-left: 250px;
+    padding: 40px;
+    overflow-y: auto;
+    height: 100vh;
+    width: calc(100% - 250px);
+}
+
+/* Section Styling */
+.doc-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.doc-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+/* Fade-In Animation */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Scrollbar Styling */
+.sidebar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 4px;
+}
