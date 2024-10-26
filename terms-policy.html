@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Service - NV VR</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #0d001a;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+  }
+  .container {
+    max-width: 800px;
+    background: #1a0036;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
+    overflow-y: auto;
+    max-height: 90vh;
+  }
+  h1, h2 {
+    color: #00bfff;
+    text-align: center;
+  }
+  p {
+    margin: 15px 0;
+    line-height: 1.6;
+  }
+  .terms-section {
+    text-align: left;
+    margin-bottom: 20px;
+  }
+  .agree-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  .agree-section input[type="checkbox"] {
+    margin-right: 10px;
+  }
+  .agree-section button {
+    display: none;
+    background-color: #00bfff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Terms of Service</h1>
+  
+  <div class="terms-section">
+    <h2>1. Introduction</h2>
+    <p>Welcome to NV VR. By accessing our services, you agree to abide by the terms outlined below. If you do not agree with any of these terms, please refrain from using our services.</p>
+    
+    <h2>2. Data Collection and Privacy</h2>
+    <p>NV VR values your privacy. We do not collect, store, or share any personal information or data from our users. All activities within our platform remain private and local to your device. We do not monitor, track, or save user behavior or personal details.</p>
+    
+    <h2>3. Use of Our Platform</h2>
+    <p>Our services are designed to provide users with a unique and immersive experience in virtual reality gaming. However, users are fully responsible for understanding and managing any risks associated with VR technology, including but not limited to, physical, mental, and technical risks.</p>
+    
+    <h2>4. Responsibility and Liability</h2>
+    <p>NV VR does not assume any liability for damages, losses, or issues that may arise while using VR games or applications associated with our services. This includes, but is not limited to, issues caused by third-party games, VR devices, or user behavior while engaging with VR content.</p>
+    
+    <h2>5. External Game Content</h2>
+    <p>While our platform may feature access to third-party VR games, we are not responsible for the content, safety, or functionality of any game developed by external creators. Users should verify the legitimacy and safety of third-party games independently.</p>
+    
+    <h2>6. Age Requirement</h2>
+    <p>Users must be at least 13 years old to use NV VR services. By agreeing to these terms, you confirm that you meet the age requirement.</p>
+    
+    <h2>7. Limitation of Liability</h2>
+    <p>NV VR shall not be held liable for any indirect, incidental, or consequential damages arising from the use of our platform. This includes, but is not limited to, issues such as VR-related injuries, equipment failure, or loss of virtual or real-world data.</p>
+    
+    <h2>8. Changes to Terms of Service</h2>
+    <p>We reserve the right to update or modify these Terms of Service at any time without prior notice. We recommend that you periodically review these terms to stay informed about any changes. Your continued use of our services constitutes acceptance of the revised terms.</p>
+    
+    <h2>9. User Agreement</h2>
+    <p>By using NV VR, you acknowledge that you understand and agree to abide by these Terms of Service. Failure to comply with these terms may result in the restriction or termination of your access to our services.</p>
+    
+    <h2>10. Contact Us</h2>
+    <p>If you have any questions or concerns regarding these Terms of Service, please contact our support team through the provided channels on our platform.</p>
+    
+    <p>Thank you for choosing NV VR. We hope you have a safe and enjoyable experience!</p>
+  </div>
+  
+  <div class="agree-section">
+    <input type="checkbox" id="agree-checkbox" onchange="toggleButton()">
+    <label for="agree-checkbox">I agree to the Terms of Service</label>
+    <button id="agree-button" onclick="redirectToMain()">OK</button>
+  </div>
+</div>
+
+<script>
+  function toggleButton() {
+    const agreeButton = document.getElementById("agree-button");
+    agreeButton.style.display = document.getElementById("agree-checkbox").checked ? "inline-block" : "none";
+  }
+
+  function redirectToMain() {
+    window.location.href = "index.html"; // Replace with the actual main page link
+  }
+</script>
+
+</body>
+</html>
