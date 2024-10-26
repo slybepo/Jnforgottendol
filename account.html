@@ -233,6 +233,7 @@
       hashParams.set('expires_in', expiresIn);
       hashParams.set('scope', scope);
 
+  
       window.location.hash = hashParams.toString();
   }
 
@@ -241,16 +242,23 @@
     const fragment = new URLSearchParams(window.location.hash.slice(1));
     const tokenType = fragment.get('token_type');
 
+   
     if (!accessToken) {
       accessToken = fragment.get('access_token');
       if (accessToken) {
+        const expiresIn = fragment.get('expires_in') || '604800'; 
+        const scope = fragment.get('scope') || 'identify'; 
+
         localStorage.setItem('access_token', accessToken);
-        setUrlHashParameters(tokenType, accessToken, '604800', 'identify');
+
+     
+        setUrlHashParameters(tokenType, accessToken, expiresIn, scope);
       } else {
         window.location.href = '/';
         return;
       }
     }
+
 
     fetch('https://discord.com/api/users/@me', {
       headers: {
@@ -268,5 +276,6 @@
     .catch(console.error);
   };
 </script>
+
 </body>
 </html>
