@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Support - NV VR</title>
 <style>
-  /* Overall styling */
+ 
   body {
     font-family: Arial, sans-serif;
     background: #0d001a;
@@ -78,12 +78,12 @@
 <div class="container">
   <h1>Support Ticket</h1>
   <div id="ticket-section">
-    <!-- Ticket Form -->
+  
     <div id="open-ticket-section">
       <textarea id="ticket-message" rows="4" placeholder="Describe your issue..."></textarea>
       <button onclick="openTicket()">Open Ticket</button>
     </div>
-    <!-- Messages Section -->
+   
     <div id="messages-section" style="display: none;">
       <h3>Your Ticket Messages</h3>
       <div class="ticket-messages" id="messages"></div>
@@ -98,7 +98,7 @@
 </div>
 
 <script>
-  const userId = 'user123'; // Unique identifier for the user
+  const userId = 'user123'; 
 
   function openTicket() {
     const message = document.getElementById("ticket-message").value;
