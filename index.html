@@ -440,7 +440,7 @@
     const [accessToken, tokenType] = [fragment.get('access_token'), fragment.get('token_type')];
 
     if (!accessToken) {
-        window.location.assign('/');
+        window.location.assign('/login');
     }
     localStorage.setItem('access_token', accessToken);
     fetch('https://discord.com/api/users/@me', {
