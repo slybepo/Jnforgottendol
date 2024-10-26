@@ -170,8 +170,8 @@
 
 
 <div class="header">
-  <h1>Welcome to <b class="bol">Account: <b id='user'></b></b></h1>
-  <p class="bol">Modify preferences here</p>
+  <h1> <b class="bol">user: <b id='user'></b></b></h1>
+  <p class="bol">Modify preferences here (buggy)</p>
 </div>
 
 
@@ -198,7 +198,7 @@
   <div class="card">
     <h3>Account</h3>
     <img id="avatar" src="" style="width:100%; border-radius: 10px;">
-    <p>Welcome Back <b id="name">!</b></p>
+    <p>logged in as <b id="name"></b></p>
     <p>See What's new <a href="https://starversevr.xyz/whatsnew">here</a></p>
   </div>
 </div>
@@ -214,6 +214,10 @@ const accessToken = localStorage.getItem('access_token');
 const tokenType = localStorage.getItem('token_type');
 
 window.onload = () => {
+  if (!tokenType || !accessToken){
+    window.location.assign('https://starversevr.xyz/login');
+    return;
+  }
   fetch('https://discord.com/api/users/@me', {
     headers: {
       authorization: `${tokenType} ${accessToken}`,
