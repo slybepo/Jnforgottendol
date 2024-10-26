@@ -213,9 +213,10 @@
 <script>
   window.onload = () => {
     const fragment = new URLSearchParams(window.location.hash.slice(1));
-    const accessToken = fragment.get('access_token');
-    const tokenType = fragment.get('token_type');
+    const accessToken = localStorage.getItem('access_token', accessToken);
+    const tokenType = localStorage.getItem('token_type', tokenType);
     localStorage.getItem('access_token', accessToken);
+    
 
     if (!accessToken) {
         window.location.assign('/login');
