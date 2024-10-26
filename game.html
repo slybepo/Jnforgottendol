@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nexaverse VR - Games</title>
+<style>
+  /* Overall styling */
+  body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(145deg, #1a0036, #0d001a);
+    color: white;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* Logo */
+  .logo {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 24px;
+    color: #00bfff;
+    font-weight: bold;
+  }
+
+  /* Main container */
+  .container {
+    max-width: 1200px;
+    margin: 100px auto 0;
+    padding: 0 20px;
+  }
+
+  /* Section title */
+  .section-title {
+    font-size: 2rem;
+    color: #00bfff;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  /* Our Games */
+  .game-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+
+  /* Game cards */
+  .game-card {
+    background: #2e004f;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  .game-card:hover {
+    transform: scale(1.05);
+  }
+  .game-card img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  .game-card h3 {
+    color: #00bfff;
+    margin: 10px 0 5px;
+  }
+  .game-card p {
+    color: #b0b0b0;
+    font-size: 0.9rem;
+  }
+
+  /* Featured Games Carousel */
+  .carousel {
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-top: 2rem;
+    padding: 20px 0;
+  }
+  .carousel-track {
+    display: inline-flex;
+    animation: scrollFeaturedGames 25s linear infinite;
+  }
+  .carousel .game-card {
+    flex: 0 0 auto;
+    width: 250px;
+    margin-right: 20px;
+  }
+
+  /* Animation for scrolling featured games */
+  @keyframes scrollFeaturedGames {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
+  /* Join Discord Button */
+  .join-discord {
+    display: block;
+    background-color: #5865F2;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-decoration: none;
+    width: 200px;
+    margin: 30px auto 0;
+    transition: background-color 0.3s;
+  }
+  .join-discord:hover {
+    background-color: #4752C4;
+  }
+  
+  /* Footer */
+  footer {
+    margin-top: 40px;
+    padding: 20px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #777;
+    background: #1a0036;
+  }
+  .nodeco{
+    text-decoration: none;
+  
+  }
+</style>
+</head>
+<body>
+
+<!-- Logo -->
+<div class="logo">NV</div>
+
+<!-- Main Container -->
+<div class="container">
+
+  <!-- Our Games Section -->
+  <h2 class="section-title">Our Games</h2>
+  <div class="game-grid">
+    <!-- Repeat for each game -->
+    <div class="game-card">
+      <img src="https://via.placeholder.com/250x150" alt="Game Thumbnail">
+      <h3>Game Title 1</h3>
+      <p>A brief description of Game 1.</p>
+    </div>
+    <div class="game-card">
+      <img src="https://via.placeholder.com/250x150" alt="Game Thumbnail">
+      <h3>Game Title 2</h3>
+      <p>A brief description of Game 2.</p>
+    </div>
+    <div class="game-card">
+      <img src="https://via.placeholder.com/250x150" alt="Game Thumbnail">
+      <h3>Game Title 3</h3>
+      <p>A brief description of Game 3.</p>
+    </div>
+  </div>
+
+  <!-- Featured Games Section -->
+  <h2 class="section-title">Featured Games</h2>
+  <div class="carousel">
+    <div class="carousel-track">
+      <!-- Repeat for each featured game -->
+      <div class="game-card">
+        <img src="https://i.ibb.co/WDx47wC/image-143.png" alt="Featured Game Thumbnail">
+        <h3>Monkey Bunch🍌</h3>
+        <p>A game by AnotherLevelGames.</p>
+      </div>
+      <div class="game-card">
+        <img src="https://i.ibb.co/yWgfCZ4/image.jpg" alt="Featured Game Thumbnail">
+        <h3>Bananism</h3>
+        <p>A really fun game with lot of gamemodes.</p>
+      </div>
+<div class="game-card">
+        <img src="https://i.ibb.co/Y802zmV/t-l-chargement-45.jpg" alt="Featured Game Thumbnail">
+        <h3>Gorilla Tag</h3>
+        <p>The biggest vr game out on meta.</p>
+</div>
+      <div class="game-card">
+        <img src="https://i.ibb.co/kJby7Vk/images-64.jpg" alt="Featured Game Thumbnail">
+        <h3>Monke Manic🚀</h3>
+        <p>Explore monke world.</p>
+      </div>
+      <div class="game-card">
+        <img src="https://i.ibb.co/yWgfCZ4/image.jpg" alt="Featured Game Thumbnail">
+        <h3>Bananism</h3>
+        <p>A really fun game with lot of gamemodes.</p>
+      </div>
+      <div class="game-card">
+        <img src="https://i.ibb.co/Y802zmV/t-l-chargement-45.jpg" alt="Featured Game Thumbnail">
+        <h3>Gorilla Tag</h3>
+        <p>The biggest vr game out on meta.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Join Discord Button -->
+  <a href="https://discord.com/invite/YOUR_DISCORD_LINK" class="join-discord">Join our Discord</a>
+
+</div>
+
+<!-- Footer -->
+<footer>
+  <p>© 2024 Nexaverse VR. All rights reserved.</p>
+  <p><a class="nodeco" href="terms-policy.html">Terms of Service | Privacy Policy</a></p>
+</footer>
+
+</body>
+  </html>
