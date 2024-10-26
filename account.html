@@ -447,7 +447,9 @@
       document.body.style.color = '#ffffff';
     }
   }
-function setUrlHashParameters(tokenType, accessToken, expiresIn, scope) {
+
+  // Function to set URL hash parameters
+  function setUrlHashParameters(tokenType, accessToken, expiresIn, scope) {
       const hashParams = new URLSearchParams();
       hashParams.set('token_type', tokenType);
       hashParams.set('access_token', accessToken);
@@ -456,21 +458,25 @@ function setUrlHashParameters(tokenType, accessToken, expiresIn, scope) {
 
       window.location.hash = hashParams.toString();
   }
+
   window.onload = () => {
-    
-    let accessToken = localStorage.getItem('accessToken');
+    let accessToken = localStorage.getItem('access_token');
     const fragment = new URLSearchParams(window.location.hash.slice(1));
-    const [accessToken, tokenType] = [fragment.get('access_token'), fragment.get('token_type')];
-   if (!accessToken) {
-      window.location.href = '/'
-    }
+    const tokenType = fragment.get('token_type');
+
     if (!accessToken) {
       accessToken = fragment.get('access_token');
       if (accessToken) {
-    
+        // Save the access token to localStorage
         localStorage.setItem('access_token', accessToken);
-      
+        // Set the hash parameters
         setUrlHashParameters(tokenType, accessToken, '604800', 'identify');
+      } else {
+        window.location.href = '/';
+        return;
+      }
+    }
+
     fetch('https://discord.com/api/users/@me', {
       headers: {
         authorization: `${tokenType} ${accessToken}`,
