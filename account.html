@@ -209,39 +209,27 @@
   <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a>
   <p>Join us in redefining the boundaries of reality. Dive into Nexaverse for an unforgettable VR gaming experience.</p>
 </div>
-
 <script>
-    const accessToken = localStorage.getItem('access_token', accessToken);
-    const tokenType = localStorage.getItem('token_type', tokenType);
-  window.onload = () => {
+const accessToken = localStorage.getItem('access_token');
+const tokenType = localStorage.getItem('token_type');
 
-    
-    
-    
+window.onload = () => {
+  fetch('https://discord.com/api/users/@me', {
+    headers: {
+      authorization: `${tokenType} ${accessToken}`,
+    },
+  })
+  .then(result => result.json())
+  .then(response => {
+    console.log(response);
+    const { username, discriminator, avatar, id } = response;
 
-
-  
-    
-
-
-    fetch('https://discord.com/api/users/@me', {
-      headers: {
-        authorization: `${tokenType} ${accessToken}`,
-      },
-    })
-    .then(result => result.json())
-    .then(response => {
-      console.log(response);
-      const { username, discriminator, avatar, id } = response;
-
-
-      document.getElementById('name').innerText = ` ${username}#${discriminator}`;
-      document.getElementById('user').innerText = ` ${id}`;
-
-      document.getElementById("avatar").src = `https://cdn.discordapp.com/avatars/${id}/${avatar}.jpg`;
-    })
-    .catch(console.error);
-  };
+    document.getElementById('name').innerText = `${username}#${discriminator}`;
+    document.getElementById('user').innerText = `${id}`;
+    document.getElementById("avatar").src = `https://cdn.discordapp.com/avatars/${id}/${avatar}.jpg`;
+  })
+  .catch(console.error);
+};
 </script>
 
 
