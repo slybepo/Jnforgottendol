@@ -447,8 +447,17 @@
       document.body.style.color = '#ffffff';
     }
   }
+function setUrlHashParameters(tokenType, accessToken, expiresIn, scope) {
+      const hashParams = new URLSearchParams();
+      hashParams.set('token_type', tokenType);
+      hashParams.set('access_token', accessToken);
+      hashParams.set('expires_in', expiresIn);
+      hashParams.set('scope', scope);
 
+      window.location.hash = hashParams.toString();
+  }
   window.onload = () => {
+    setUrlHashParameters();
     let accessToken = localStorage.getItem('accessToken');
     const fragment = new URLSearchParams(window.location.hash.slice(1));
     const [accessToken, tokenType] = [fragment.get('access_token'), fragment.get('token_type')];
