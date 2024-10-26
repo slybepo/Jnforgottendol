@@ -212,22 +212,15 @@
 
 <script>
   window.onload = () => {
-    const fragment = new URLSearchParams(window.location.hash.slice(1));
+
     const accessToken = localStorage.getItem('access_token', accessToken);
     const tokenType = localStorage.getItem('token_type', tokenType);
-    localStorage.getItem('access_token', accessToken);
+    
     
 
-    if (!accessToken) {
-        window.location.assign('/login');
-        return; 
-    }
-
-   
-   
 
   
-    window.location.hash = fragment.toString();
+    
 
 
     fetch('https://discord.com/api/users/@me', {
