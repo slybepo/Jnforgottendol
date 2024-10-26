@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Support Agent - Ticket Response</title>
+<style>
+  /  body {
+    font-family: Arial, sans-serif;
+    background: #0d001a;
+    color: white;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .container {
+    max-width: 800px;
+    width: 90%;
+    margin: 40px auto;
+    background: #2e004f;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
+  }
+  .ticket-messages {
+    background: #1a0036;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 20px;
+    height: 300px;
+    overflow-y: auto;
+  }
+  .message {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    background: #333;
+    text-align: left;
+  }
+  .message.user { background: #00bfff; }
+  .message.support { background: #ff4081; }
+  .input-group {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+  }
+  .input-group input[type="text"], .input-group input[type="file"] {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    flex: 1;
+  }
+  .input-group button {
+    padding: 10px;
+    border: none;
+    background-color: #00bfff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .close-ticket {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #ff4081;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Support Ticket Responses</h1>
+  <div id="tickets-container"></div>
+</div>
+
+<script>
+  const agentId = 'support_agent'; // Unique ID for the support agent
+
+  function loadTickets() {
+    const ticket = JSON.parse(localStorage.getItem('ticket'));
+    if (ticket) renderTicket(ticket);
+  }
+
+  function renderTicket(ticket) {
+    const ticketsContainer = document.getElementById("tickets-container");
+    ticketsContainer.innerHTML = `<div class="ticket-messages" id="messages">
+      ${ticket.messages.map(msg => `
+        <div class="message ${msg.sender}">
+          <strong>${msg.sender === 'user' ? 'User' : 'Support'}</strong>: ${msg.text}<br><small>${msg.time}</small>
+          ${msg.image ? `<br><img src="${msg.image}" width="100%">` : ''}
+        </div>`).join('')}
+    </div>
+    <div class="input-group">
+      <input type="text" id="response-input" placeholder="Type your response...">
+      <input type="file" id="image-upload">
+      <button onclick="sendResponse()">Send</button>
+    </div>
+    <button class="close-ticket" onclick="closeTicket()">Close Ticket</button>`;
+  }
+
+  function sendResponse() {
+    const messageText = document.getElementById("response-input").value;
+    const fileInput = document.getElementById("image-upload").files[0];
+    if (!messageText && !fileInput) return alert("Please enter a response or select an image.");
+
+    let message = { sender: 'support', text: messageText, time: new Date().toLocaleString() };
+    if (fileInput) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        message.image = e.target.result;
+        addResponse(message);
+      };
+      reader.readAsDataURL(fileInput);
+    } else {
+      addResponse(message);
+    }
+  }
+
+  function addResponse(message) {
+    const ticket = JSON.parse(localStorage.getItem('ticket'));
+    ticket.messages.push(message);
+    localStorage.setItem('ticket', JSON.stringify(ticket));
+    renderTicket(ticket);
+    document.getElementById("response-input").value = '';
+    document.getElementById("image-upload").value = '';
+  }
+
+  function closeTicket() {
+    localStorage.removeItem('ticket');
+    loadTickets();
+  }
+
+  loadTickets();
+</script>
+
+</body>
+</html>
