@@ -1,57 +1,234 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-    <body> 
-            <style>
-        .container {
-            position: absolute;
-            top: 400px;
-            left: -10px;
+    <link rel="stylesheet" href="styles.css"> Link to your CSS 
+    <style>
+        :root{
+            --inputs: salmon;
         }
-
-        .container p {
-            margin: 0;
-            font-size: 16px;
+        .form{
+            color: white;
+            border-color: white;
+            border-width: 1px;
+            border-radius: 5px;
+            background: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-style: solid;
+            width: 270px;
+            height: 40px;
+            outline: none;
+            margin-right: 28%;
+        }
+        .log{
+            background: none;
+            width: 100px;
+            height: 40px;
+            border-style: solid;
+            border-width: 1px;
+            border-color: white;
+            border-radius: 10px;
+            color: white;
+            font-family: sans-serif;
+            font-size: 18px;
             font-weight: bold;
-        }
-
-        .container img {
-            display: block;
-            margin-top: 500px;
-            max-width: 500px; 
-            height: auto;
-        }
-            </style>
-        <div> 
             
-    <div class="container">
-    <p>  </p>
-    <img src="https://i.ibb.co/4grdV7t/Sans-titre-4-20241019151615.png" alt="Image Description">
-    </div>
- </head>
-    <div class="login-container">
-        <h1>Login</h1>
-        <form id="loginForm">
-            <input type="email" id="email" placeholder="Email" required>
-            <input type="password" id="password" placeholder="Password" required>
-            <button type="submit" class="filled-button">Login</button>
-            <div id="loading-screen" class="loading-screen" style="display: none;">Loading...</div>
+            
+        }
+        .log:hover{
+            opacity: 0.7;
+            transition: opacity 0.12s;
+        }
+        .term{
+            color: white;
+            outline: none; 
+            text-decoration: none;
+            
+            text-underline-offset: none;
+            
+        }
+        .term:hover{
+            color: orange;
+            transition: color 0.23s;
+        }
+        .to{
+            color: yellow;
+            outline: none; 
+            text-decoration: none;
+            
+            text-underline-offset: none;
+            
+        }
+        .to:hover{
+            color: orange;
+            transition: color 0.23s;
+            }
+        .policy{
+            color: white;
+            outline: none; 
+            text-decoration: none;
+            
+            text-underline-offset: none;
+            
+        }
+        .policy:hover{
+            color: orangered;
+            transition: color 0.23s;
+        }
+        .back{
+            position: top;
+            x: -10px;
+            color: white;
+            height: 36px;
+            width: 100px;
+            border: none;
+            font-size: 20px;
+            background: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-display: bold;
+            border-radius: 7px;
+            border-width: 1px;
+            border-color: white;
+            border-style: solid;
+        
+        }
+        .back:hover{
+            opacity: 0.7;
+            transition:  opacity 0.18s;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Login</h2>
+        <button class="back" onclick="window.location.href='index.html'">«Back</button>
+        <br>
+        <form id="login-form">
+            <input class="form" type="email" id="login-email" placeholder="Email" required>
+            <br>
+            <input class="form" type="password" id="login-password" placeholder="Password" required>
+            <br>
+            <button class="log" type="submit">Login</button>
+            
         </form>
-
-        <div id="feedback" class="feedback-message"></div>
-        <p>Don't have an account? <a href="https://starversevr.xyz/register">Register here</a></p>
+        <br>
+        <a href="https://www.buymeacoffee.com/Mousser"><img src="https://img.buymeacoffee.com/button-api/?text=Donate us!&emoji=&slug=Mousser&button_colour=FF5F5F&font_colour=ffffff&font_family=Lato&outline_colour=000000&coffee_colour=FFDD00" /></a>
+        <p>Dont have an account? <a class="to"  href="register.html">Sign up here</a></p>
+        <p><a class="term" href="terms-of-services.html">Terms of services </a>| <a class="policy" href="privacy.html">Privacy Policy</a></p>
     </div>
 
-    
+    <script src="https://cdn.jsdelivr.net/npm/playfab-web-sdk"></script>
+    <script src="app.js"></script>
+</body>
+</html>-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - Nexaverse VR</title>
+<style>
+  /* Overall styling */
+  body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(145deg, #1a0036, #0d001a);
+    color: white;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+  }
 
-    </div>
- 
-    <script src="https://download.playfab.com/PlayFabClientApi.js"></script>
-    <script src="login.js"></script>
+  /* Background watermark */
+  .watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(4);
+    opacity: 0.05;
+    font-size: 10rem;
+    color: #000080;
+    font-weight: bold;
+    z-index: -1;
+  }
+
+  /* Logo */
+  .logo {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 24px;
+    color: #00bfff;
+    font-weight: bold;
+  }
+
+  /* Login container */
+  .login-container {
+    background: #2e004f;
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    z-index: 1;
+  }
+
+  /* Login button */
+  .login-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: #5865F2;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0px 0px 10px rgba(88, 101, 242, 0.5);
+  }
+  .login-button:hover {
+    background-color: #4752C4;
+    transform: scale(1.05);
+  }
+
+  /* Subheading styling */
+  .login-container h2 {
+    font-size: 1.8rem;
+    color: #00bfff;
+    margin-bottom: 1rem;
+  }
+
+  /* Description paragraph */
+  .login-container p {
+    font-size: 1rem;
+    color: #b0b0b0;
+    margin-bottom: 2rem;
+  }
+</style>
+</head>
+<body>
+
+<!-- Background Watermark -->
+<div class="watermark">NV</div>
+
+<!-- Logo -->
+<div class="logo">NV</div>
+
+<!-- Login Container -->
+<div class="login-container">
+  <h2>Login to Nexaverse VR</h2>
+  <p>Access exclusive VR content, explore the latest games, and join the community.</p>
+  <a href="https://discord.com/oauth2/authorize?client_id=1299490921032974457&response_type=token&redirect_uri=https%3A%2F%2Fe10d0ea3-2da2-4450-976a-161d74e40d69-00-2zcwlhxbomf3c.janeway.replit.dev%2Fauth%2Fdiscord&scope=identify" class="login-button">Login with Discord</a>
+</div>
+
 </body>
 </html>
