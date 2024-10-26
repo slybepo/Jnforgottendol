@@ -211,53 +211,22 @@
 </div>
 
 <script>
-  function changeTheme() {
-    const theme = document.getElementById('theme').value;
-    if (theme === 'dark') {
-      document.body.style.background = '#000000';
-      document.body.style.color = '#ffffff';
-    } else if (theme === 'light') {
-      document.body.style.background = '#ffffff';
-      document.body.style.color = '#000000';
-    } else {
-      document.body.style.background = 'linear-gradient(145deg, #1a0036, #0d001a)';
-      document.body.style.color = '#ffffff';
-    }
-  }
-
-
-  function setUrlHashParameters(tokenType, accessToken, expiresIn, scope) {
-      const hashParams = new URLSearchParams();
-      hashParams.set('token_type', tokenType);
-      hashParams.set('access_token', accessToken);
-      hashParams.set('expires_in', expiresIn);
-      hashParams.set('scope', scope);
-
-  
-      window.location.hash = hashParams.toString();
-  }
-
   window.onload = () => {
-    let accessToken = localStorage.getItem('access_token');
     const fragment = new URLSearchParams(window.location.hash.slice(1));
+    const accessToken = fragment.get('access_token');
     const tokenType = fragment.get('token_type');
 
-   
+
     if (!accessToken) {
-      accessToken = fragment.get('access_token');
-      if (accessToken) {
-        const expiresIn = fragment.get('expires_in') || '604800'; 
-        const scope = fragment.get('scope') || 'identify'; 
-
-        localStorage.setItem('access_token', accessToken);
-
-     
-        setUrlHashParameters(tokenType, accessToken, expiresIn, scope);
-      } else {
-        window.location.href = '/';
-        return;
-      }
+        window.location.assign('/login');
+        return; 
     }
+
+   
+    localStorage.setItem('access_token', accessToken);
+
+  
+    window.location.hash = fragment.toString();
 
 
     fetch('https://discord.com/api/users/@me', {
@@ -269,13 +238,17 @@
     .then(response => {
       console.log(response);
       const { username, discriminator, avatar, id } = response;
+
+
       document.getElementById('name').innerText = ` ${username}#${discriminator}`;
-      document.getElementById('user').innerText = ` ${id}`;
+
+
       document.getElementById("avatar").src = `https://cdn.discordapp.com/avatars/${id}/${avatar}.jpg`;
     })
     .catch(console.error);
   };
 </script>
+
 
 </body>
 </html>
