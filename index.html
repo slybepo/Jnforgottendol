@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nexaverse VR</title>
 <style>
-
   body {
     margin: 0;
     padding: 0;
@@ -16,7 +14,8 @@
     overflow-x: hidden;
     position: relative;
   }
-.cookie-popup {
+  
+  .cookie-popup {
     display: none;
     position: fixed;
     bottom: 0;
@@ -30,11 +29,14 @@
     justify-content: space-between;
     align-items: center;
     border-top: 2px solid #00bfff;
+    z-index: 100;
   }
+  
   .cookie-popup p {
     margin: 0;
     padding-right: 20px;
   }
+  
   .cookie-popup button {
     background-color: #00bfff;
     color: white;
@@ -43,7 +45,7 @@
     border-radius: 5px;
     cursor: pointer;
   }
-
+  
   .watermark {
     position: absolute;
     top: 50%;
@@ -56,12 +58,10 @@
     z-index: -1;
   }
 
-
   .logo {
     position: fixed;
     top: 20px;
     left: 20px;
-    
     font-size: 24px;
     color: #00bfff;
     font-weight: bold;
@@ -72,14 +72,33 @@
     padding: 2rem;
   }
 
+  .categories {
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  .category-button {
+    padding: 0.5rem 1rem;
+    background: #1a0036;
+    border: 1px solid #00bfff;
+    color: #00bfff;
+    border-radius: 5px;
+    margin: 0.5rem;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .category-button:hover {
+    background-color: #00bfff;
+    color: #1a0036;
+  }
+
   .card-container {
     display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+    justify-content: center;
     flex-wrap: wrap;
     padding: 2rem;
   }
-
 
   .card {
     background: #2e004f;
@@ -92,44 +111,11 @@
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
     color: white;
   }
+
   .card:hover {
     transform: rotateY(15deg) rotateX(5deg);
     box-shadow: 0px 0px 20px #00bfff;
   }
-  .login-button {
-    display: inline-block;
-    padding: 1rem 2rem;
-    background-color: #5865F2;
-    color: white;
-    font-size: 1.2rem;
-    font-weight: bold;
-    text-decoration: none;
-    border-radius: 8px;
-    transition: background-color 0.3s ease;
-  }
-  .login-button:hover {
-    background-color: #4752C4;
-  }
-
-  .categories {
-    text-align: center;
-    margin-top: 3rem;
-  }
-  .category-button {
-    padding: 0.5rem 1rem;
-    background: #1a0036;
-    border: 1px solid #00bfff;
-    color: #00bfff;
-    border-radius: 5px;
-    margin: 0.5rem;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-  .category-button:hover {
-    background-color: #00bfff;
-    color: #1a0036;
-  }
-
 
   .footer {
     background: #0d001a;
@@ -137,16 +123,14 @@
     padding: 2rem;
     text-align: center;
   }
+
   .footer p, .footer a {
     color: #00bfff;
     text-decoration: none;
     margin: 0 10px;
   }
-  .bol{
-    font-weight: bold;
-    color: #00bfff;
-  }
-  .but{
+
+  .but {
     background: none;
     border-style: solid;
     border-color: #00bfff;
@@ -158,50 +142,58 @@
     justify-content: center;
     color: white;
     margin-left: 60px;
-    
+    cursor: pointer;
   }
-  .game{
+
+  .game {
     text-decoration: none;
     color: #00bfff;
     font-weight: bold;
   }
- 
-   
-    
+
+  @media (max-width: 768px) {
+    .header, .categories, .card-container {
+      padding: 1rem;
+    }
+
+    .logo {
+      top: 10px;
+      left: 10px;
+      font-size: 20px;
+    }
+
+    .card {
+      width: 90%;
+      margin: 0.5rem;
+    }
+  }
+
 </style>
 </head>
 <body>
 
-
 <div class="watermark">NV</div>
-
 
 <div class="logo">NEXAVERSE</div>
 
-
 <div class="header">
-  <h1>Welcome to <b class="bol">Nexaverse VR</b></h1>
-  <p class="bol">Your way to immersive virtual reality games.</p>
+  <h1>Welcome to <b style="color:#00bfff;">Nexaverse VR</b></h1>
+  <p style="color:#00bfff; font-weight:bold;">Your way to immersive virtual reality games.</p>
 </div>
 
-
-  
-    
 <div class="categories">
   <h2>Explore Categories</h2>
   <button onclick='window.location.href="https://starversevr.xyz/game"' class="category-button">Explore Games</button>
   <button class="category-button">Our projects</button>
   <button onclick='window.location.href="https://starversevr.xyz/support"' class="category-button">Support</button>
-  <button onclick='window.location.href="https://discord.gg/uX5cCVFbtt"' class="category-button">discord</button>
+  <button onclick='window.location.href="https://discord.gg/uX5cCVFbtt"' class="category-button">Discord</button>
 </div>
 
-  <div class="card-container">
-  
 <div class="card-container">
   <div class="card">
     <h3>About us</h3>
     <img src="https://i.ibb.co/NpJsTtS/DALL-E-2024-10-25-15-02-10-A-sleek-and-futuristic-logo-featuring-the-letters-NV-for-a-VR-gaming-comp.png" alt="Nexaverse Logo" style="width:100%; border-radius: 10px;">
-    <p>Hello we are NexaVerse, in this website we will presente you everyday some selected vr games on the <a class="game" href="https://starversevr.xyz/game">Meta quest games</a> page.</p>
+    <p>Hello we are NexaVerse, in this website we will present you selected VR games on the <a class="game" href="https://starversevr.xyz/game">Meta quest games</a> page.</p>
   </div>
   <div class="card">
     <h3>Our team</h3>
@@ -211,10 +203,10 @@
   </div>
   <div class="card">
     <h3>Account</h3>
-    <img id ="avatar" src="" style="width:100%; border-radius: 10px;">
+    <img id="avatar" src="" style="width:100%; border-radius: 10px;">
     <p>Welcome Back <b id="name">!</b></p>
-      <p>See What's new <a href="https://starversevr.xyz/wahtsnew">here</a></p>
-      <button onclick='window.location.href="https://starversevr.xyz/account"' class="but">My account</button>
+    <p>See What's new <a href="https://starversevr.xyz/wahtsnew">here</a></p>
+    <button onclick='window.location.href="https://starversevr.xyz/account"' class="but">My account</button>
   </div>
 </div>
 
@@ -222,7 +214,7 @@
   <p>NexaVerse uses cookies to enhance your experience. By clicking "Allow Cookies," you agree to our use of cookies as described in our privacy policy.</p>
   <button onclick="acceptCookies()">Allow Cookies</button>
 </div>
-    
+
 <div class="footer">
   <p>&copy; 2024 Nexaverse VR. All rights reserved.</p>
   <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a>
@@ -231,71 +223,40 @@
 
 <script>
   window.onload = () => {
-    
     const accessToken = localStorage.getItem('access_token');
     const tokenType = localStorage.getItem('token_type');
-    
     if (!accessToken || !tokenType) {
         const fragment = new URLSearchParams(window.location.hash.slice(1));
-    const [accessToken, tokenType] = [fragment.get('access_token'), fragment.get('token_type')];
-    localStorage.setItem('access_token', accessToken);
-    localStorage.setItem('token_type', tokenType);
-      if (!fragment){
-        window.location.assign('/login');
-      }
-    
+        const [accessToken, tokenType] = [fragment.get('access_token'), fragment.get('token_type')];
+        localStorage.setItem('access_token', accessToken);
+        localStorage.setItem('token_type', tokenType);
+        if (!fragment) {
+          window.location.assign('/login');
+        }
     }
     fetch('https://discord.com/api/users/@me', {
-    headers: {
-        authorization: `${tokenType} ${accessToken}`,
-    },
+      headers: { authorization: `${tokenType} ${accessToken}` }
     })
     .then(result => result.json())
     .then(response => {
-        console.log(response);
-        const { username, discriminator, avatar, id} = response;
-   
-        document.getElementById('name').innerText = ` ${username}#${discriminator}`;
-
-        document.getElementById("avatar").src = `https://cdn.discordapp.com/avatars/${id}/${avatar}.jpg`;
+      const { username, discriminator, avatar, id} = response;
+      document.getElementById('name').innerText = ` ${username}#${discriminator}`;
+      document.getElementById("avatar").src = `https://cdn.discordapp.com/avatars/${id}/${avatar}.jpg`;
     })
     .catch(console.error);
 
     setTimeout(() => {
-      if (!getCookie("cookiesAccepted")) {
-        document.getElementById("cookiePopup").style.display = "flex";
+      if (!localStorage.getItem('cookiesAccepted')) {
+        document.getElementById('cookiePopup').style.display = 'flex';
       }
     }, 5000);
-  }
+  };
 
-  
   function acceptCookies() {
-    setCookie("cookiesAccepted", "true", 365);
-    document.getElementById("cookiePopup").style.display = "none";
+    localStorage.setItem('cookiesAccepted', 'true');
+    document.getElementById('cookiePopup').style.display = 'none';
   }
-
-  
-  function setCookie(name, value, days) {
-    const date = new Date();
-    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-    document.cookie = name + "=" + value + ";expires=" + date.toUTCString() + ";path=/";
-  }
-
-  
-  function getCookie(name) {
-    const nameEQ = name + "=";
-    const ca = document.cookie.split(';');
-    for (let i = 0; i < ca.length; i++) {
-      let c = ca[i];
-      while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-      if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-    }
-    return null;
-  }
-
-};
 </script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7975583860041524"
-     crossorigin="anonymous"></script>
+
 </body>
 </html>
