@@ -5,6 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nexaverse VR</title>
 <style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
   body {
     margin: 0;
     padding: 0;
@@ -12,9 +18,8 @@
     color: white;
     font-family: Arial, sans-serif;
     overflow-x: hidden;
-    position: relative;
   }
-  
+
   .cookie-popup {
     display: none;
     position: fixed;
@@ -31,12 +36,12 @@
     border-top: 2px solid #00bfff;
     z-index: 100;
   }
-  
+
   .cookie-popup p {
     margin: 0;
     padding-right: 20px;
   }
-  
+
   .cookie-popup button {
     background-color: #00bfff;
     color: white;
@@ -45,7 +50,7 @@
     border-radius: 5px;
     cursor: pointer;
   }
-  
+
   .watermark {
     position: absolute;
     top: 50%;
@@ -87,7 +92,7 @@
     cursor: pointer;
     transition: 0.3s;
   }
-  
+
   .category-button:hover {
     background-color: #00bfff;
     color: #1a0036;
@@ -154,6 +159,7 @@
   @media (max-width: 768px) {
     .header, .categories, .card-container {
       padding: 1rem;
+      text-align: center;
     }
 
     .logo {
@@ -240,20 +246,20 @@
     .then(result => result.json())
     .then(response => {
       const { username, discriminator, avatar, id} = response;
-      document.getElementById('name').innerText = ` ${username}#${discriminator}`;
-      document.getElementById("avatar").src = `https://cdn.discordapp.com/avatars/${id}/${avatar}.jpg`;
+      document.getElementById('name').innerText = `${username}#${discriminator}`;
+      document.getElementById('avatar').src = `https://cdn.discordapp.com/avatars/${id}/${avatar}.png`;
     })
-    .catch(console.error);
+    .catch(error => console.error(error));
 
     setTimeout(() => {
-      if (!localStorage.getItem('cookiesAccepted')) {
+      if (!sessionStorage.getItem('cookiesAccepted')) {
         document.getElementById('cookiePopup').style.display = 'flex';
       }
     }, 5000);
   };
 
   function acceptCookies() {
-    localStorage.setItem('cookiesAccepted', 'true');
+    sessionStorage.setItem('cookiesAccepted', 'true');
     document.getElementById('cookiePopup').style.display = 'none';
   }
 </script>
