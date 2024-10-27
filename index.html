@@ -201,15 +201,19 @@
 
 <script>
   window.onload = () => {
-    const fragment = new URLSearchParams(window.location.hash.slice(1));
-    const [accessToken, tokenType] = [fragment.get('access_token'), fragment.get('token_type')];
+    const accessToken = localStorage.getItem('access_token');
+    const tokenType = localStorage.getItem('token_type');
     
     if (!accessToken || !tokenType) {
-        window.location.assign('/login');
-    }
-    
+        const fragment = new URLSearchParams(window.location.hash.slice(1));
+    const [accessToken, tokenType] = [fragment.get('access_token'), fragment.get('token_type')];
     localStorage.setItem('access_token', accessToken);
     localStorage.setItem('token_type', tokenType);
+      if (!fragment){
+        window.location.assign('/login');
+      }
+    
+    }
     fetch('https://discord.com/api/users/@me', {
     headers: {
         authorization: `${tokenType} ${accessToken}`,
@@ -225,7 +229,7 @@
         document.getElementById("avatar").src = `https://cdn.discordapp.com/avatars/${id}/${avatar}.jpg`;
     })
     .catch(console.error);
-
+      
 
 };
 </script>
