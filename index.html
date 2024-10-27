@@ -10,7 +10,14 @@
     margin: 0;
     padding: 0;
   }
-
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center; 
+    min-height: 100vh; 
+}
+ 
   body {
     margin: 0;
     background: linear-gradient(145deg, #1a0036, #0d001a);
@@ -186,7 +193,7 @@
 <div class="watermark">NV</div>
 
 <div class="logo">NEXAVERSE</div>
-
+<div class="container">
 <div class="header">
   <h1>Welcome to <b style="color:#00bfff;">Nexaverse VR</b></h1>
   <p style="color:#00bfff; font-weight:bold;">Your way to immersive virtual reality games.</p>
@@ -219,6 +226,7 @@
     <p>See what's new <a href="https://starversevr.xyz/wahtsnew">here</a></p>
     <button onclick='window.location.href="https://starversevr.xyz/account"' class="but">My Account</button>
   </div>
+</div>
 </div>
 
 <div class="footer">
