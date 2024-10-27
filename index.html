@@ -16,7 +16,33 @@
     overflow-x: hidden;
     position: relative;
   }
-
+.cookie-popup {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #1a0036;
+    color: white;
+    padding: 20px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 2px solid #00bfff;
+  }
+  .cookie-popup p {
+    margin: 0;
+    padding-right: 20px;
+  }
+  .cookie-popup button {
+    background-color: #00bfff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
 
   .watermark {
     position: absolute;
@@ -192,7 +218,11 @@
   </div>
 </div>
 
-
+<div class="cookie-popup" id="cookiePopup">
+  <p>This website uses cookies to enhance your experience. By clicking "Allow Cookies," you agree to our use of cookies as described in our privacy policy.</p>
+  <button onclick="acceptCookies()">Allow Cookies</button>
+</div>
+    
 <div class="footer">
   <p>&copy; 2024 Nexaverse VR. All rights reserved.</p>
   <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a>
@@ -201,6 +231,37 @@
 
 <script>
   window.onload = () => {
+    setTimeout(() => {
+      if (!getCookie("cookiesAccepted")) {
+        document.getElementById("cookiePopup").style.display = "flex";
+      }
+    }, 5000);
+  }
+
+  // Function to accept cookies and hide the popup
+  function acceptCookies() {
+    setCookie("cookiesAccepted", "true", 365);
+    document.getElementById("cookiePopup").style.display = "none";
+  }
+
+  // Set a cookie with a specified expiration date
+  function setCookie(name, value, days) {
+    const date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    document.cookie = name + "=" + value + ";expires=" + date.toUTCString() + ";path=/";
+  }
+
+  // Get a cookie value by name
+  function getCookie(name) {
+    const nameEQ = name + "=";
+    const ca = document.cookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+      if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+  }
     const accessToken = localStorage.getItem('access_token');
     const tokenType = localStorage.getItem('token_type');
     
