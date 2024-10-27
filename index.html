@@ -216,10 +216,7 @@
   </div>
 </div>
 
-<div class="cookie-popup" id="cookiePopup">
-  <p>NexaVerse uses cookies to enhance your experience. By clicking "Allow Cookies," you agree to our use of cookies as described in our privacy policy.</p>
-  <button onclick="acceptCookies()">Allow Cookies</button>
-</div>
+
 
 <div class="footer">
   <p>&copy; 2024 Nexaverse VR. All rights reserved.</p>
@@ -249,17 +246,7 @@
     })
     .catch(error => console.error(error));
 
-    setTimeout(() => {
-      if (!sessionStorage.getItem('cookiesAccepted')) {
-        document.getElementById('cookiePopup').style.display = 'flex';
-      }
-    }, 5000);
-  };
-
-  function acceptCookies() {
-    sessionStorage.setItem('cookiesAccepted', 'true');
-    document.getElementById('cookiePopup').style.display = 'none';
-  }
+    
 </script>
 
 </body>
