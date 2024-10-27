@@ -219,7 +219,7 @@
 </div>
 
 <div class="cookie-popup" id="cookiePopup">
-  <p>This website uses cookies to enhance your experience. By clicking "Allow Cookies," you agree to our use of cookies as described in our privacy policy.</p>
+  <p>NexaVerse uses cookies to enhance your experience. By clicking "Allow Cookies," you agree to our use of cookies as described in our privacy policy.</p>
   <button onclick="acceptCookies()">Allow Cookies</button>
 </div>
     
@@ -238,20 +238,20 @@
     }, 5000);
   }
 
-  // Function to accept cookies and hide the popup
+  
   function acceptCookies() {
     setCookie("cookiesAccepted", "true", 365);
     document.getElementById("cookiePopup").style.display = "none";
   }
 
-  // Set a cookie with a specified expiration date
+  
   function setCookie(name, value, days) {
     const date = new Date();
     date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
     document.cookie = name + "=" + value + ";expires=" + date.toUTCString() + ";path=/";
   }
 
-  // Get a cookie value by name
+  
   function getCookie(name) {
     const nameEQ = name + "=";
     const ca = document.cookie.split(';');
