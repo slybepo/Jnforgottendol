@@ -11,58 +11,44 @@
     padding: 0;
   }
 
+  body {
+    margin: 0;
+    background: linear-gradient(145deg, #1a0036, #0d001a);
+    color: white;
+    font-family: Arial, sans-serif;
+    overflow: hidden; /* Prevent scrolling bug */
+  }
+
   .container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    overflow: hidden;
   }
 
-  body {
-    margin: 0;
-    background: linear-gradient(145deg, #1a0036, #0d001a);
-    color: white;
-    font-family: Arial, sans-serif;
-  }
-
-  /* Fade-in 3D logo effect */
   .watermark {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(0.8);
-    opacity: 0;
+    transform: translate(-50%, -50%) scale(3);
+    opacity: 0.07;
     font-size: 10rem;
-    color: #00bfff;
+    color: #000080;
     font-weight: bold;
     z-index: -1;
-    animation: fadeIn3D 2s ease-in forwards;
+    transition: opacity 1s ease-in-out;
     cursor: pointer;
-  }
-
-  @keyframes fadeIn3D {
-    0% {
-      transform: translate(-50%, -50%) scale(0.8) rotateY(30deg);
-      opacity: 0;
-    }
-    100% {
-      transform: translate(-50%, -50%) scale(1) rotateY(0deg);
-      opacity: 0.05;
-    }
   }
 
   .watermark:hover {
     opacity: 0.1;
-    color: #00e6ff;
   }
 
-  .watermark:active {
-    opacity: 0.15;
+  .watermark:hover, .watermark:active {
+    transform: scale(3.1);
   }
 
-  /* Logo and Header */
   .logo {
     position: fixed;
     top: 20px;
@@ -70,7 +56,6 @@
     font-size: 24px;
     color: #00bfff;
     font-weight: bold;
-    cursor: pointer;
   }
 
   .header {
@@ -78,26 +63,28 @@
     padding: 2rem;
   }
 
-  /* Categories Section */
   .categories {
-    text-align: center;
-    margin-top: 2rem;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
   }
 
   .category-button {
-    padding: 12px 24px;
-    background: #1a0036;
+    padding: 10px 20px;
+    background: transparent;
     border: 1px solid #00bfff;
     color: #00bfff;
-    border-radius: 8px;
-    margin: 5px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: 0.3s ease;
   }
 
   .category-button:hover {
     background-color: #00bfff;
     color: #1a0036;
+    box-shadow: 0 0 10px #00bfff;
   }
 
   .card-container {
@@ -105,37 +92,28 @@
     justify-content: center;
     flex-wrap: wrap;
     padding: 2rem;
+    gap: 2rem;
   }
 
   .card {
-    background: rgba(46, 0, 79, 0.8);
+    background: rgba(46, 0, 79, 0.7);
     width: 100%;
     max-width: 250px;
     padding: 1.5rem;
     border-radius: 15px;
     margin: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     text-align: center;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
     color: white;
-    overflow: hidden;
-    transition: transform 0.3s ease;
+    backdrop-filter: blur(10px);
   }
 
   .card:hover {
-    transform: scale(1.03);
-  }
-
-  .card img {
-    opacity: 0.9;
-    border-radius: 10px;
-    transition: transform 0.3s;
-  }
-
-  .card:hover img {
     transform: scale(1.05);
+    box-shadow: 0px 0px 20px #00bfff;
   }
 
-  /* Footer */
   .footer {
     background: #0d001a;
     color: #808080;
@@ -149,25 +127,31 @@
     margin: 0 10px;
   }
 
-  /* Button Styles */
   .but {
     background: none;
     border: 1px solid #00bfff;
     border-radius: 7px;
-    height: 35px;
-    width: 110px;
+    height: 30px;
+    width: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
     margin: 10px auto;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: 0.3s ease;
   }
 
   .but:hover {
     background-color: #00bfff;
     color: #1a0036;
+    box-shadow: 0 0 10px #00bfff;
+  }
+
+  .game {
+    text-decoration: none;
+    color: #00bfff;
+    font-weight: bold;
   }
 
   @media (max-width: 768px) {
@@ -191,21 +175,21 @@
 </head>
 <body>
 
-<a href="https://starversevr.xyz/" class="watermark">NV</a>
+<div class="watermark" onclick="window.location.href='https://starversevr.xyz/'">NV</div>
 
-<div class="logo" onclick="window.location.href='https://starversevr.xyz/'">NEXAVERSE</div>
+<div class="logo">NEXAVERSE</div>
+
+<div class="categories">
+  <button onclick='window.location.href="https://starversevr.xyz/game"' class="category-button">Explore Games</button>
+  <button class="category-button">Our Projects</button>
+  <button onclick='window.location.href="https://starversevr.xyz/support"' class="category-button">Support</button>
+  <button onclick='window.location.href="https://discord.gg/uX5cCVFbtt"' class="category-button">Discord</button>
+</div>
+
 <div class="container">
   <div class="header">
     <h1>Welcome to <b style="color:#00bfff;">Nexaverse VR</b></h1>
     <p style="color:#00bfff; font-weight:bold;">Your way to immersive virtual reality games.</p>
-  </div>
-
-  <div class="categories">
-    <h2>Explore Categories</h2>
-    <button onclick="window.location.href='https://starversevr.xyz/game'" class="category-button">Explore Games</button>
-    <button class="category-button">Our Projects</button>
-    <button onclick="window.location.href='https://starversevr.xyz/support'" class="category-button">Support</button>
-    <button onclick="window.location.href='https://discord.gg/uX5cCVFbtt'" class="category-button">Discord</button>
   </div>
 
   <div class="card-container">
@@ -249,9 +233,9 @@
       .then(response => {
         const { username, discriminator, avatar, id } = response;
         document.getElementById('name').innerText = `${username}#${discriminator}`;
-        document.getElementById('avatar').src = `https://cdn.discordapp.com/avatars/${id}/${avatar}`;
+        document.getElementById('avatar').src = `https://cdn.discordapp.com/avatars/${id}/${avatar}.png`;
       })
-      .catch(() => window.location.assign('/login'));
+      .catch(error => console.error(error));
   };
 </script>
 
