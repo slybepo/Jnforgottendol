@@ -16,7 +16,7 @@
     justify-content: center;
     align-items: center;
     min-height: 150vh;
-    overflow: hidden; /* Prevent scrolling */
+    overflow: hidden; 
     background: linear-gradient(145deg, #1a0036, #0d001a);
     font-family: Arial, sans-serif;
     color: white;
@@ -26,24 +26,24 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center horizontally */
-    text-align: center; /* Center text */
+    align-items: center; 
+    text-align: center; 
     padding: 2rem;
     z-index: 1;
     margin-left: 21vh;
   }
 
   .logo {
-    font-size: 6rem; /* Increase logo size */
+    font-size: 6rem; 
     font-weight: bold;
-    background: linear-gradient(to right, #00bfff, #ff77a1); /* Brighter girly pink */
-    -webkit-background-clip: text; /* Clip the background to the text */
-    -webkit-text-fill-color: transparent; /* Make the text fill transparent */
+    background: linear-gradient(to right, #00bfff, #ff77a1); 
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent; 
     transform: scale(0.8);
     opacity: 0;
-    animation: fadeInScaleUp 1.5s forwards, infiniteIdle 3s infinite alternate; /* Added infinite idle animation */
-    margin-bottom: 0.5rem; /* Adjusts space below the logo */
-    margin-top: -3rem; /* Move logo higher */
+    animation: fadeInScaleUp 1.5s forwards, infiniteIdle 3s infinite alternate; 
+    margin-bottom: 0.5rem; 
+    margin-top: -3rem; 
   }
 
   @keyframes fadeInScaleUp {
@@ -52,14 +52,14 @@
   }
 
   @keyframes infiniteIdle {
-    0% { transform: scale(1); } /* Normal size */
-    50% { transform: scale(1.05); } /* Slightly enlarged */
-    100% { transform: scale(1); } /* Back to normal */
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); } 
+    100% { transform: scale(1); }
   }
 
   .welcome-text {
-    font-size: 2rem; /* Increase text size */
-    margin-top: 4rem; /* Move text down further */
+    font-size: 2rem; 
+    margin-top: 4rem; 
     color: #b0c4de;
     animation: fadeIn 2s 0.5s forwards;
     opacity: 0;
@@ -71,10 +71,10 @@
   }
 
   .cta-button {
-    position: relative; /* Changed to relative for more control */
-    margin-top: 2rem; /* Adjust button position */
-    padding: 1.5rem 4rem; /* Increase padding for more prominence */
-    font-size: 1.5rem; /* Increase button text size */
+    position: relative; 
+    margin-top: 2rem; 
+    padding: 1.5rem 4rem; 
+    font-size: 1.5rem; 
     font-weight: bold;
     color: #1a0036;
     background-color: #00bfff;
@@ -95,14 +95,14 @@
   .background-logo {
     position: absolute;
     top: 50%;
-    left: 50%; /* Center horizontally */
-    transform: translate(-50%, -50%) scale(1.5); /* Adjust scale here */
-    opacity: 0.1; /* Slightly increase opacity for better visibility */
+    left: 50%; 
+    transform: translate(-50%, -50%) scale(1.5); 
+    opacity: 0.1; 
     z-index: -1;
-    animation: fadeInScaleUp 1.5s forwards; /* Same fade-in animation as logo */
-    width: 80vw; /* Set a maximum width */
-    height: auto; /* Maintain aspect ratio */
-    max-height: 50vh; /* Limit maximum height */
+    animation: fadeInScaleUp 1.5s forwards;
+    width: 80vw; 
+    height: auto; 
+    max-height: 50vh; 
   }
 
 </style>
@@ -110,15 +110,15 @@
 <body>
 
 <div class="welcome-container">
-  <!-- Main Logo with Fade-In and Scale-Up Animation -->
+  
   <div class="logo">NexaVerse</div>
-  <!-- Welcome Text -->
+ 
   <p class="welcome-text">Explore the ultimate VR experience with Nexaverse.</p>
-  <!-- Call-to-Action Button -->
+
   <button class="cta-button" onclick="window.location.href='https://starversevr.xyz/main'">Explore Games</button>
 </div>
 
-<!-- Background Logo behind the main content -->
+
 <img src="https://i.ibb.co/NpJsTtS/DALL-E-2024-10-25-15-02-10-A-sleek-and-futuristic-logo-featuring-the-letters-NV-for-a-VR-gaming-comp.png" alt="Nexaverse Logo" class="background-logo">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7975583860041524"
      crossorigin="anonymous"></script>
