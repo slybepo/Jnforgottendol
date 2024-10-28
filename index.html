@@ -35,7 +35,7 @@
   .logo {
     font-size: 5rem;
     font-weight: bold;
-    background: linear-gradient(to right, #00bfff, #ff6f91); /* Gradient from blue to pink */
+    background: linear-gradient(to right, #00bfff, #ff77a1); /* Brighter girly pink */
     -webkit-background-clip: text; /* Clip the background to the text */
     -webkit-text-fill-color: transparent; /* Make the text fill transparent */
     transform: scale(0.8);
@@ -52,7 +52,7 @@
 
   .welcome-text {
     font-size: 1.5rem;
-    margin-top: 1rem;
+    margin-top: 3rem; /* Move text down */
     color: #b0c4de;
     animation: fadeIn 2s 0.5s forwards;
     opacity: 0;
@@ -94,7 +94,7 @@
     transform: translate(-50%, -50%) scale(1.5); /* Adjust scale here */
     opacity: 0.1; /* Slightly increase opacity for better visibility */
     z-index: -1;
-    animation: fadeIn 1.5s forwards; /* Same fade-in animation */
+    animation: fadeInScaleUp 1.5s forwards; /* Same fade-in animation as logo */
     width: 80vw; /* Set a maximum width */
     height: auto; /* Maintain aspect ratio */
     max-height: 50vh; /* Limit maximum height */
