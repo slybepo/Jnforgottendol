@@ -86,11 +86,14 @@
   .background-logo {
     position: absolute;
     top: 50%;
-    left: 10%;
-    transform: translate(-50%, -50%) scale(4);
-    opacity: 0.05;
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%) scale(1.5); /* Adjust scale here */
+    opacity: 0.1; /* Slightly increase opacity for better visibility */
     z-index: -1;
     animation: fadeIn 1.5s forwards;
+    width: 80vw; /* Set a maximum width */
+    height: auto; /* Maintain aspect ratio */
+    max-height: 50vh; /* Limit maximum height */
   }
 
 </style>
