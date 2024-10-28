@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nexaverse VR</title>
+<title>Welcome to Nexaverse VR</title>
 <style>
   * {
     box-sizing: border-box;
@@ -12,232 +12,105 @@
   }
 
   body {
-    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden; /* Prevent scrolling */
     background: linear-gradient(145deg, #1a0036, #0d001a);
-    color: white;
     font-family: Arial, sans-serif;
-    overflow: hidden; /* Prevent scrolling bug */
+    color: white;
   }
 
-  .container {
+  .welcome-container {
+    position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-  }
-
-  .watermark {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(3);
-    opacity: 0.07;
-    font-size: 10rem;
-    color: #000080;
-    font-weight: bold;
-    z-index: -1;
-    transition: opacity 1s ease-in-out;
-    cursor: pointer;
-  }
-
-  .watermark:hover {
-    opacity: 0.1;
-  }
-
-  .watermark:hover, .watermark:active {
-    transform: scale(3.1);
+    align-items: flex-start;
+    text-align: left;
+    padding: 2rem;
+    z-index: 1;
   }
 
   .logo {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    font-size: 24px;
-    color: #00bfff;
+    font-size: 5rem;
     font-weight: bold;
-  }
-
-  .header {
-    text-align: center;
-    padding: 2rem;
-  }
-
-  .categories {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    display: flex;
-    gap: 10px;
-  }
-
-  .category-button {
-    padding: 10px 20px;
-    background: transparent;
-    border: 1px solid #00bfff;
     color: #00bfff;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.3s ease;
+    transform: scale(0.8);
+    opacity: 0;
+    animation: fadeInScaleUp 1.5s forwards;
   }
 
-  .category-button:hover {
-    background-color: #00bfff;
+  @keyframes fadeInScaleUp {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  .welcome-text {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    color: #b0c4de;
+    animation: fadeIn 2s 0.5s forwards;
+    opacity: 0;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .cta-button {
+    position: absolute;
+    top: 50%;
+    right: 15%;
+    transform: translateY(-50%);
+    padding: 1rem 3rem;
+    font-size: 1.2rem;
+    font-weight: bold;
     color: #1a0036;
-    box-shadow: 0 0 10px #00bfff;
+    background-color: #00bfff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    animation: fadeIn 2s 0.5s forwards;
+    opacity: 0;
   }
 
-  .card-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    padding: 2rem;
-    gap: 2rem;
-  }
-
-  .card {
-    background: rgba(46, 0, 79, 0.7);
-    width: 100%;
-    max-width: 250px;
-    padding: 1.5rem;
-    border-radius: 15px;
-    margin: 1rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-align: center;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
-    color: white;
-    backdrop-filter: blur(10px);
-  }
-
-  .card:hover {
+  .cta-button:hover {
+    background-color: #009acd;
+    box-shadow: 0px 0px 15px #00bfff;
     transform: scale(1.05);
-    box-shadow: 0px 0px 20px #00bfff;
   }
 
-  .footer {
-    background: #0d001a;
-    color: #808080;
-    padding: 2rem;
-    text-align: center;
-  }
-
-  .footer p, .footer a {
+  .background-logo {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translate(-50%, -50%) scale(4);
+    opacity: 0.05;
     color: #00bfff;
-    text-decoration: none;
-    margin: 0 10px;
-  }
-
-  .but {
-    background: none;
-    border: 1px solid #00bfff;
-    border-radius: 7px;
-    height: 30px;
-    width: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    margin: 10px auto;
-    cursor: pointer;
-    transition: 0.3s ease;
-  }
-
-  .but:hover {
-    background-color: #00bfff;
-    color: #1a0036;
-    box-shadow: 0 0 10px #00bfff;
-  }
-
-  .game {
-    text-decoration: none;
-    color: #00bfff;
+    font-size: 15rem;
     font-weight: bold;
+    z-index: -1;
+    animation: fadeIn 1.5s forwards;
   }
 
-  @media (max-width: 768px) {
-    .header, .categories, .card-container {
-      padding: 1rem;
-      text-align: center;
-    }
-
-    .logo {
-      top: 10px;
-      left: 10px;
-      font-size: 20px;
-    }
-
-    .card {
-      width: 90%;
-      margin: 0.5rem;
-    }
-  }
 </style>
 </head>
 <body>
 
-<div class="watermark" onclick="window.location.href='https://starversevr.xyz/'">NV</div>
-
-<div class="logo">NEXAVERSE</div>
-
-<div class="categories">
-  <button onclick='window.location.href="https://starversevr.xyz/game"' class="category-button">Explore Games</button>
-  <button class="category-button">Our Projects</button>
-  <button onclick='window.location.href="https://starversevr.xyz/support"' class="category-button">Support</button>
-  <button onclick='window.location.href="https://discord.gg/uX5cCVFbtt"' class="category-button">Discord</button>
+<div class="welcome-container">
+  <!-- Main Logo with Fade-In and Scale-Up Animation -->
+  <div class="logo">NEXAVERSE</div>
+  <!-- Welcome Text -->
+  <p class="welcome-text">Explore the ultimate VR experience with Nexaverse.</p>
+  <!-- Call-to-Action Button -->
+  <button class="cta-button" onclick="window.location.href='https://starversevr.xyz/game'">Explore Games</button>
 </div>
 
-<div class="container">
-  <div class="header">
-    <h1>Welcome to <b style="color:#00bfff;">Nexaverse VR</b></h1>
-    <p style="color:#00bfff; font-weight:bold;">Your way to immersive virtual reality games.</p>
-  </div>
-
-  <div class="card-container">
-    <div class="card">
-      <h3>About Us</h3>
-      <img src="https://i.ibb.co/NpJsTtS/DALL-E-2024-10-25-15-02-10-A-sleek-and-futuristic-logo-featuring-the-letters-NV-for-a-VR-gaming-comp.png" alt="Nexaverse Logo" style="width:100%; border-radius: 10px;">
-      <p>Hello, we are Nexaverse! Explore selected VR games on our <a class="game" href="https://starversevr.xyz/game">Meta Quest Games</a> page.</p>
-    </div>
-    <div class="card">
-      <h3>Our Team</h3>
-      <img src="https://i.ibb.co/wsDTspt/Talking-via-online-video-conference-art-Graphics-6229307-1-1-580x368.jpg" alt="team" style="width:100%; border-radius: 10px;">
-      <p>If you need support, our team is here to help!</p>
-      <button class="but">Contact</button>
-    </div>
-    <div class="card">
-      <h3>Account</h3>
-      <img id="avatar" src="" style="width:100%; border-radius: 10px;">
-      <p>Welcome Back <b id="name">!</b></p>
-      <p>See what's new <a href="https://starversevr.xyz/wahtsnew">here</a></p>
-      <button onclick='window.location.href="https://starversevr.xyz/account"' class="but">My Account</button>
-    </div>
-  </div>
-</div>
-
-<div class="footer">
-  <p>&copy; 2024 Nexaverse VR. All rights reserved.</p>
-  <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a>
-  <p>Join us in redefining the boundaries of reality. Dive into Nexaverse for an unforgettable VR gaming experience.</p>
-</div>
-
-<script>
-  window.onload = () => {
-    const fragment = new URLSearchParams(window.location.hash.slice(1));
-    const [accessToken, tokenType] = [fragment.get('access_token'), fragment.get('token_type')];
-    localStorage.setItem('access_token', accessToken);
-    localStorage.setItem('token_type', tokenType);
-
-    if (!accessToken) window.location.assign('/login');
-    fetch('https://discord.com/api/users/@me', { headers: { authorization: `${tokenType} ${accessToken}` } })
-      .then(result => result.json())
-      .then(response => {
-        const { username, discriminator, avatar, id } = response;
-        document.getElementById('name').innerText = `${username}#${discriminator}`;
-        document.getElementById('avatar').src = `https://cdn.discordapp.com/avatars/${id}/${avatar}.png`;
-      })
-      .catch(error => console.error(error));
-  };
-</script>
+<!-- Background Logo behind the main content -->
+<div class="background-logo">NV</div>
 
 </body>
 </html>
