@@ -17,6 +17,7 @@
     align-items: center;
     justify-content: center;
     min-height: 100vh;
+    overflow: hidden;
   }
 
   body {
@@ -24,31 +25,44 @@
     background: linear-gradient(145deg, #1a0036, #0d001a);
     color: white;
     font-family: Arial, sans-serif;
-    overflow-x: hidden;
   }
 
+  /* Fade-in 3D logo effect */
   .watermark {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(3);
-    opacity: 0.05;
-    font-size: 12rem;
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0;
+    font-size: 10rem;
     color: #00bfff;
     font-weight: bold;
     z-index: -1;
-    animation: float 5s ease-in-out infinite;
+    animation: fadeIn3D 2s ease-in forwards;
+    cursor: pointer;
   }
 
-  @keyframes float {
-    0%, 100% {
-      transform: translate(-50%, -50%) scale(3) rotate(0deg);
+  @keyframes fadeIn3D {
+    0% {
+      transform: translate(-50%, -50%) scale(0.8) rotateY(30deg);
+      opacity: 0;
     }
-    50% {
-      transform: translate(-50%, -50%) scale(3.1) rotate(3deg);
+    100% {
+      transform: translate(-50%, -50%) scale(1) rotateY(0deg);
+      opacity: 0.05;
     }
   }
 
+  .watermark:hover {
+    opacity: 0.1;
+    color: #00e6ff;
+  }
+
+  .watermark:active {
+    opacity: 0.15;
+  }
+
+  /* Logo and Header */
   .logo {
     position: fixed;
     top: 20px;
@@ -56,6 +70,7 @@
     font-size: 24px;
     color: #00bfff;
     font-weight: bold;
+    cursor: pointer;
   }
 
   .header {
@@ -63,6 +78,7 @@
     padding: 2rem;
   }
 
+  /* Categories Section */
   .categories {
     text-align: center;
     margin-top: 2rem;
@@ -77,27 +93,11 @@
     margin: 5px;
     cursor: pointer;
     transition: all 0.3s ease;
-    position: relative;
   }
 
-  .category-button::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 0;
-    height: 3px;
-    background: #00bfff;
-    transition: width 0.3s;
-  }
-
-  .category-button:hover::after {
-    width: 100%;
-  }
-
-  .category-button:active {
-    transform: scale(0.95);
-    border-color: #fff;
+  .category-button:hover {
+    background-color: #00bfff;
+    color: #1a0036;
   }
 
   .card-container {
@@ -118,13 +118,11 @@
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
     color: white;
     overflow: hidden;
-    position: relative;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease;
   }
 
   .card:hover {
-    transform: rotateY(10deg) rotateX(5deg);
-    box-shadow: 0px 0px 20px #00bfff;
+    transform: scale(1.03);
   }
 
   .card img {
@@ -137,6 +135,7 @@
     transform: scale(1.05);
   }
 
+  /* Footer */
   .footer {
     background: #0d001a;
     color: #808080;
@@ -150,6 +149,7 @@
     margin: 0 10px;
   }
 
+  /* Button Styles */
   .but {
     background: none;
     border: 1px solid #00bfff;
@@ -168,18 +168,6 @@
   .but:hover {
     background-color: #00bfff;
     color: #1a0036;
-    transform: scale(1.05);
-  }
-
-  .but:active {
-    border-color: #fff;
-    transform: scale(0.9);
-  }
-
-  .game {
-    text-decoration: none;
-    color: #00bfff;
-    font-weight: bold;
   }
 
   @media (max-width: 768px) {
@@ -199,48 +187,47 @@
       margin: 0.5rem;
     }
   }
-
 </style>
 </head>
 <body>
 
-<div class="watermark">NV</div>
+<a href="https://starversevr.xyz/" class="watermark">NV</a>
 
-<div class="logo">NEXAVERSE</div>
+<div class="logo" onclick="window.location.href='https://starversevr.xyz/'">NEXAVERSE</div>
 <div class="container">
-<div class="header">
-  <h1>Welcome to <b style="color:#00bfff;">Nexaverse VR</b></h1>
-  <p style="color:#00bfff; font-weight:bold;">Your way to immersive virtual reality games.</p>
-</div>
+  <div class="header">
+    <h1>Welcome to <b style="color:#00bfff;">Nexaverse VR</b></h1>
+    <p style="color:#00bfff; font-weight:bold;">Your way to immersive virtual reality games.</p>
+  </div>
 
-<div class="categories">
-  <h2>Explore Categories</h2>
-  <button onclick='window.location.href="https://starversevr.xyz/game"' class="category-button">Explore Games</button>
-  <button class="category-button">Our Projects</button>
-  <button onclick='window.location.href="https://starversevr.xyz/support"' class="category-button">Support</button>
-  <button onclick='window.location.href="https://discord.gg/uX5cCVFbtt"' class="category-button">Discord</button>
-</div>
+  <div class="categories">
+    <h2>Explore Categories</h2>
+    <button onclick="window.location.href='https://starversevr.xyz/game'" class="category-button">Explore Games</button>
+    <button class="category-button">Our Projects</button>
+    <button onclick="window.location.href='https://starversevr.xyz/support'" class="category-button">Support</button>
+    <button onclick="window.location.href='https://discord.gg/uX5cCVFbtt'" class="category-button">Discord</button>
+  </div>
 
-<div class="card-container">
-  <div class="card">
-    <h3>About Us</h3>
-    <img src="https://i.ibb.co/NpJsTtS/DALL-E-2024-10-25-15-02-10-A-sleek-and-futuristic-logo-featuring-the-letters-NV-for-a-VR-gaming-comp.png" alt="Nexaverse Logo" style="width:100%; border-radius: 10px;">
-    <p>Hello, we are Nexaverse! Explore selected VR games on our <a class="game" href="https://starversevr.xyz/game">Meta Quest Games</a> page.</p>
+  <div class="card-container">
+    <div class="card">
+      <h3>About Us</h3>
+      <img src="https://i.ibb.co/NpJsTtS/DALL-E-2024-10-25-15-02-10-A-sleek-and-futuristic-logo-featuring-the-letters-NV-for-a-VR-gaming-comp.png" alt="Nexaverse Logo" style="width:100%; border-radius: 10px;">
+      <p>Hello, we are Nexaverse! Explore selected VR games on our <a class="game" href="https://starversevr.xyz/game">Meta Quest Games</a> page.</p>
+    </div>
+    <div class="card">
+      <h3>Our Team</h3>
+      <img src="https://i.ibb.co/wsDTspt/Talking-via-online-video-conference-art-Graphics-6229307-1-1-580x368.jpg" alt="team" style="width:100%; border-radius: 10px;">
+      <p>If you need support, our team is here to help!</p>
+      <button class="but">Contact</button>
+    </div>
+    <div class="card">
+      <h3>Account</h3>
+      <img id="avatar" src="" style="width:100%; border-radius: 10px;">
+      <p>Welcome Back <b id="name">!</b></p>
+      <p>See what's new <a href="https://starversevr.xyz/wahtsnew">here</a></p>
+      <button onclick='window.location.href="https://starversevr.xyz/account"' class="but">My Account</button>
+    </div>
   </div>
-  <div class="card">
-    <h3>Our Team</h3>
-    <img src="https://i.ibb.co/wsDTspt/Talking-via-online-video-conference-art-Graphics-6229307-1-1-580x368.jpg" alt="team" style="width:100%; border-radius: 10px;">
-    <p>If you need support, our team is here to help!</p>
-    <button class="but">Contact</button>
-  </div>
-  <div class="card">
-    <h3>Account</h3>
-    <img id="avatar" src="" style="width:100%; border-radius: 10px;">
-    <p>Welcome Back <b id="name">!</b></p>
-    <p>See what's new <a href="https://starversevr.xyz/wahtsnew">here</a></p>
-    <button onclick='window.location.href="https://starversevr.xyz/account"' class="but">My Account</button>
-  </div>
-</div>
 </div>
 
 <div class="footer">
