@@ -104,6 +104,26 @@
     height: auto; 
     max-height: 50vh; 
   }
+ .continue--btn {
+  position: relative; 
+    margin-top: 2rem; 
+    padding: 1.5rem 4rem; 
+  height: 55px;
+  background: #00bfff;
+  border-radius: 11px;
+  border: 0;
+  outline: none;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  background: linear-gradient(180deg, #363636 0%, #1B1B1B 50%, #000000 100%);
+  box-shadow: 0px 0px 0px 0px  #1a0036, 0px 0px 0px 0px  #1a0036;
+  transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
+}
+
+.continue--btn:hover {
+  box-shadow: 0px 0px 0px 2px #FFFFFF, 0px 0px 0px 4px  #1a0036;
+   }
 
 </style>
 </head>
@@ -115,7 +135,7 @@
  
   <p class="welcome-text">Explore the ultimate VR experience with Nexaverse.</p>
 
-  <button class="cta-button" onclick="window.location.href='https://starversevr.xyz/main'">Explore Games</button>
+  <button class="continue--btn" onclick="window.location.href='https://starversevr.xyz/main'">Explore Games</button>
 </div>
 
 
