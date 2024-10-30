@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Starverse VR Game Store</title>
+<style>
+    * {
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background-color: #121212;
+        color: #e0e0e0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+        padding: 20px;
+    }
+
+    .top-bar {
+        width: 100%;
+        max-width: 1200px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        background-color: #1e1e1e;
+        border-radius: 10px;
+        margin-bottom: 2rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .top-bar img {
+        height: 40px;
+    }
+
+    .top-bar a {
+        color: #00bfff;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .game-categories {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        width: 100%;
+        max-width: 1200px;
+    }
+
+    .game-card {
+        position: relative;
+        height: 200px;
+        background-color: #333;
+        border-radius: 10px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: transform 0.3s;
+    }
+
+    .game-card:hover {
+        transform: scale(1.05);
+    }
+
+    .game-card img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: opacity 0.3s;
+    }
+
+    .game-card img:hover {
+        opacity: 0.5;
+    }
+
+    .game-card h3 {
+        position: absolute;
+        bottom: 15px;
+        left: 15px;
+        font-size: 1.2rem;
+        color: #fff;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    }
+
+    .store-section {
+        display: none;
+        width: 100%;
+        max-width: 1200px;
+        background-color: #1e1e1e;
+        border-radius: 10px;
+        padding: 2rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        margin-top: 1rem;
+        animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    .store-section h2 {
+        font-size: 1.8rem;
+        color: #ff4081;
+        margin-bottom: 1rem;
+    }
+
+    .payment-button {
+        background-color: #0070ba;
+        color: white;
+        padding: 0.8rem 1.6rem;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        cursor: pointer;
+        margin-top: 1rem;
+    }
+
+    .coupon-input {
+        padding: 0.5rem;
+        margin-top: 1rem;
+        border-radius: 5px;
+        border: 1px solid #444;
+        color: #121212;
+    }
+
+    .coupon-button {
+        margin-top: 1rem;
+        padding: 0.5rem;
+        background-color: #00bfff;
+        color: #121212;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+
+<!-- Top Bar -->
+<div class="top-bar">
+    <img src="logo.png" alt="Logo">
+    <a href="https://starversevr.xyz/main">Home</a>
+</div>
+
+<!-- Game Categories -->
+<div class="game-categories">
+    <div class="game-card" onclick="showGameStore('Game A')">
+        <img src="game-a.jpg" alt="Game A">
+        <h3>Game A</h3>
+    </div>
+    <div class="game-card" onclick="showGameStore('Game B')">
+        <img src="game-b.jpg" alt="Game B">
+        <h3>Game B</h3>
+    </div>
+    <!-- Add more game cards as needed -->
+</div>
+
+<!-- Store Section -->
+<div id="store-section" class="store-section">
+    <h2 id="game-title">Game Store</h2>
+    <p>Purchase items, boosts, and more for this game. Use a coupon for discounts!</p>
+    <input id="coupon-code" type="text" class="coupon-input" placeholder="Enter coupon code">
+    <button class="coupon-button" onclick="applyCoupon()">Apply Coupon</button>
+    <button class="payment-button" onclick="proceedToPayment()">Pay with PayPal</button>
+</div>
+
+<script>
+    const accessToken = localStorage.getItem('accessToken');
+    const tokenType = localStorage.getItem('tokenType');
+
+    // Ensure user is logged in
+    if (!accessToken || !tokenType) {
+        alert('You must be logged in to access the store.');
+        window.location.href = 'https://starversevr.xyz/login';
+    }
+
+    // Display store section for a selected game
+    function showGameStore(gameName) {
+        document.querySelectorAll('.game-card').forEach(card => {
+            card.style.display = 'none';
+        });
+        document.getElementById('game-title').innerText = `${gameName} Store`;
+        document.getElementById('store-section').style.display = 'block';
+    }
+
+    // Placeholder for payment processing
+    function proceedToPayment() {
+        // PayPal payment code should be added here
+        alert('Proceeding to PayPal checkout with applied discounts if any.');
+    }
+
+    // Placeholder for applying coupon
+    function applyCoupon() {
+        const couponCode = document.getElementById('coupon-code').value;
+        if (couponCode === 'DISCOUNT10') {
+            alert('Coupon applied: 10% discount on your purchase.');
+            // Add your discount logic here
+        } else {
+            alert('Invalid coupon code.');
+        }
+    }
+</script>
+
+</body>
+      </html>
+      
