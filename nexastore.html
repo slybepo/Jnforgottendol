@@ -147,6 +147,7 @@
 <div class="top-bar">
     <img src="logo.png" alt="Logo">
     <a href="https://starversevr.xyz/main">Home</a>
+   <b id='name'></b>
 </div>
 
 <!-- Game Categories -->
@@ -173,39 +174,29 @@
 
 <script>
     const accessToken = localStorage.getItem('access_token');
-    const tokenType = localStorage.getItem('token_type');
+const tokenType = localStorage.getItem('token_type');
 
-    // Ensure user is logged in
-    if (!accessToken || !tokenType) {
-        alert('You must be logged in to access the store.');
-        window.location.href = 'https://starversevr.xyz/login';
-    }
+window.onload = () => {
+  if (!tokenType || !accessToken){
+    window.location.assign('https://starversevr.xyz/login');
+    return;
+  }
+  fetch('https://discord.com/api/users/@me', {
+    headers: {
+      authorization: `${tokenType} ${accessToken}`,
+    },
+  })
+  .then(result => result.json())
+  .then(response => {
+    console.log(response);
+    const { username, discriminator, avatar, id } = response;
 
-    // Display store section for a selected game
-    function showGameStore(gameName) {
-        document.querySelectorAll('.game-card').forEach(card => {
-            card.style.display = 'none';
-        });
-        document.getElementById('game-title').innerText = `${gameName} Store`;
-        document.getElementById('store-section').style.display = 'block';
-    }
-
-    // Placeholder for payment processing
-    function proceedToPayment() {
-        // PayPal payment code should be added here
-        alert('Proceeding to PayPal checkout with applied discounts if any.');
-    }
-
-    // Placeholder for applying coupon
-    function applyCoupon() {
-        const couponCode = document.getElementById('coupon-code').value;
-        if (couponCode === 'DISCOUNT10') {
-            alert('Coupon applied: 10% discount on your purchase.');
-            // Add your discount logic here
-        } else {
-            alert('Invalid coupon code.');
-        }
-    }
+    document.getElementById('name').innerText = `${username}#${discriminator}`;
+    document.getElementById('user').innerText = `${id}`;
+    document.getElementById("avatar").src = `https://cdn.discordapp.com/avatars/${id}/${avatar}.jpg`;
+  })
+  .catch(console.error);
+};
 </script>
 
 </body>
