@@ -145,9 +145,10 @@
 
 <!-- Top Bar -->
 <div class="top-bar">
-    <img src="logo.png" alt="Logo">
+    <img src="" id='avatar' alt="Logo">
+     <b id='name'></b>
     <a href="https://starversevr.xyz/main">Home</a>
-   <b id='name'></b>
+ 
 </div>
 
 <!-- Game Categories -->
@@ -197,6 +198,30 @@ window.onload = () => {
   })
   .catch(console.error);
 };
+   function showGameStore(gameName) {
+        document.querySelectorAll('.game-card').forEach(card => {
+            card.style.display = 'none';
+        });
+        document.getElementById('game-title').innerText = `${gameName} Store`;
+        document.getElementById('store-section').style.display = 'block';
+    }
+
+    // Placeholder for payment processing
+    function proceedToPayment() {
+        // PayPal payment code should be added here
+        alert('Proceeding to PayPal checkout with applied discounts if any.');
+    }
+
+    // Placeholder for applying coupon
+    function applyCoupon() {
+        const couponCode = document.getElementById('coupon-code').value;
+        if (couponCode === 'DISCOUNT10') {
+            alert('Coupon applied: 10% discount on your purchase.');
+            // Add your discount logic here
+        } else {
+            alert('Invalid coupon code.');
+        }
+    }
 </script>
 
 </body>
