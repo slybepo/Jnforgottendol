@@ -226,7 +226,7 @@
     </div>
     <div class="card">
       <h3>Account</h3>
-      <img id="avatar" src="" style="width:100%; border-radius: 10px;">
+      
       <p>Welcome Back <b id="name">!</b></p>
       <p>See what's new <a href="https://starversevr.xyz/wahtsnew">here</a></p>
       <button onclick='window.location.href="https://starversevr.xyz/account"' class="but">My Account</button>
@@ -241,22 +241,24 @@
 </div>
 
 <script>
-  window.onload = () => {
-    const fragment = new URLSearchParams(window.location.hash.slice(1));
-    const [accessToken, tokenType] = [fragment.get('access_token'), fragment.get('token_type')];
-    localStorage.setItem('access_token', accessToken);
-    localStorage.setItem('token_type', tokenType);
+  async function displayUser() {
+    await initializeAuth0();
 
-    if (!accessToken) window.location.assign('/login');
-    fetch('https://discord.com/api/users/@me', { headers: { authorization: `${tokenType} ${accessToken}` } })
-      .then(result => result.json())
-      .then(response => {
-        const { username, discriminator, avatar, id } = response;
-        document.getElementById('name').innerText = `${username}#${discriminator}`;
-        document.getElementById('avatar').src = `https://cdn.discordapp.com/avatars/${id}/${avatar}`;
-      })
-      .catch(() => window.location.assign('/login'));
-  };
+    const isAuthenticated = await auth0.isAuthenticated();
+
+    if (isAuthenticated) {
+      const user = await auth0.getUser();
+      document.getElementById("name").innerText = `${user.name}!`;
+      document.getElementById("logout").style.display = "block";
+    } else {
+      window.location.href = "login.html";
+    }
+
+    document.getElementById("logout").addEventListener("click", () => {
+      auth0.logout({ returnTo: window.location.origin });
+    });
+  }
+  displayUser();
 </script>
 
 </body>
