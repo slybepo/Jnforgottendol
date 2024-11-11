@@ -241,26 +241,32 @@
   <p>Join us in redefining the boundaries of reality. Dive into Nexaverse for an unforgettable VR gaming experience.</p>
 </div>
 
-<script>
-  async function displayUser() {
-    await initializeAuth0();
 
-    const isAuthenticated = await auth0.isAuthenticated();
+  <script>
+    window.addEventListener("load", async () => {
+      await initializeAuth0();
 
-    if (isAuthenticated) {
-      const user = await auth0.getUser();
-      document.getElementById("name").innerText = `${user.name}!`;
-      document.getElementById("logout").style.display = "block";
-    } else {
-      window.location.href = "login.html";
-    }
+      const isAuthenticated = await auth0.isAuthenticated();
 
-    document.getElementById("logout").addEventListener("click", () => {
-      auth0.logout({ returnTo: window.location.origin });
+      if (isAuthenticated) {
+        document.getElementById("login-status").innerText = "You are logged in!";
+        document.getElementById("logout-button").style.display = "block";
+      } else {
+        document.getElementById("login-status").innerText = "You are not logged in!";
+        document.getElementById("login-button").style.display = "block";
+      }
+
+      document.getElementById("login-button").addEventListener("click", async () => {
+        await auth0.loginWithRedirect({
+          screen_hint: 'signup' // This opens the Universal Login on the Sign Up form
+        });
+      });
+
+      document.getElementById("logout-button").addEventListener("click", () => {
+        auth0.logout({ returnTo: window.location.origin });
+      });
     });
-  }
-  displayUser();
-</script>
+  </script>
 
 </body>
 </html>
