@@ -3,31 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <title>Login</title>
+  <script src="https://cdn.auth0.com/js/auth0-spa-js/1.19/auth0-spa-js.production.js"></script>
   <script src="auth.js"></script>
 </head>
 <body>
-  <h2>Login</h2>
-  <form id="login-form">
-    <label>Email:</label>
-    <input type="email" id="email" required />
-    <label>Password:</label>
-    <input type="password" id="password" required />
-    <button type="submit">Login</button>
-  </form>
-  <p>Don't have an account? <a href="register.html">Register</a></p>
+    <p id="login-status">Loading...</p>
+  <button id="login-button" style="display:none;">Login / Register</button>
+  <button id="logout-button" style="display:none;">Logout</button>
 
   <script>
-    document.getElementById('login-form').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
+    window.addEventListener("load", async () => {
+      await initializeAuth0();
 
-      const token = await login(email, password);
-      if (token) {
-        window.location.href = "index.html";
+      const isAuthenticated = await auth0.isAuthenticated();
+
+      if (isAuthenticated) {
+        document.getElementById("login-status").innerText = "You are logged in!";
+        document.getElementById("logout-button").style.display = "block";
       } else {
-        alert("Login failed");
+        document.getElementById("login-status").innerText = "You are not logged in!";
+        document.getElementById("login-button").style.display = "block";
       }
+
+      document.getElementById("login-button").addEventListener("click", async () => {
+        await auth0.loginWithRedirect({
+          screen_hint: 'signup' // This opens the Universal Login on the Sign Up form
+        });
+      });
+
+      document.getElementById("logout-button").addEventListener("click", () => {
+        auth0.logout({ returnTo: window.location.origin });
+      });
     });
   </script>
 </body>
