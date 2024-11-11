@@ -1,27 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register - Nexaverse VR</title>
+<style>
+  /* Same CSS as provided */
+  body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(145deg, #1a0036, #0d001a);
+    color: white;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+  }
+  .watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(4);
+    opacity: 0.05;
+    font-size: 10rem;
+    color: #000080;
+    font-weight: bold;
+    z-index: -1;
+  }
+  .logo {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 24px;
+    color: #00bfff;
+    font-weight: bold;
+  }
+  .login-container {
+    background: #2e004f;
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    z-index: 1;
+  }
+  .login-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: #5865F2;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0px 0px 10px rgba(88, 101, 242, 0.5);
+  }
+  .login-button:hover {
+    background-color: #4752C4;
+    transform: scale(1.05);
+  }
+  .login-container h2 {
+    font-size: 1.8rem;
+    color: #00bfff;
+    margin-bottom: 1rem;
+  }
+  .login-container p {
+    font-size: 1rem;
+    color: #b0b0b0;
+    margin-bottom: 2rem;
+  }
+</style>
+<script src="auth.js"></script>
 </head>
 <body>
-    <div class="register-container">
-        <h1>Register</h1>
-        <form id="registerForm">
-            <input type="text" id="username" placeholder="Username" required>
-            <input type="email" id="registerEmail" placeholder="Email" required>
-            <input type="password" id="registerPassword" placeholder="Password" required>
-            <button type="submit" class="filled-button">Register</button>
-            <div id="loading-screen" class="loading-screen" style="display: none;">Loading...</div>
-        </form>
+<div class="watermark">NV</div>
+<div class="logo">NV</div>
+<div class="login-container">
+  <h2>Register for Nexaverse VR</h2>
+  <p>Join the community and access exclusive content by creating an account.</p>
+  <button id="register" class="login-button">Register</button>
+</div>
 
-        <div id="registerFeedback" class="feedback-message"></div>
-        <p>Already have an account? <a href="login.html">Login here</a></p>
-    </div>
-
-    <script src="https://download.playfab.com/PlayFabClientApi.js"></script>
-    <script src="register.js"></script>
+<script>
+  document.getElementById("register").addEventListener("click", async () => {
+    await auth0.loginWithRedirect({ screen_hint: "signup" });
+  });
+</script>
 </body>
 </html>
