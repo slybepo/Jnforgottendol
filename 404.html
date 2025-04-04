@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Stellar Journey</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+        
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #a29bfe;
+            --dark: #2d3436;
+            --light: #f5f6fa;
+            --accent: #fd79a8;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Space Mono', monospace;
+            background-color: var(--dark);
+            color: var(--light);
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .constellation {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 2s infinite alternate;
+        }
+        
+        @keyframes twinkle {
+            0% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+        
+        .container {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--accent);
+            animation: pulse 4s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .error-code {
+            font-size: 8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(108, 92, 231, 0.3);
+        }
+        
+        .error-message {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+        
+        .game-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 2rem 0;
+            max-width: 500px;
+        }
+        
+        .card {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 2rem;
+            perspective: 1000px;
+            transform-style: preserve-3d;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .card.flipped {
+            background: var(--primary);
+            transform: rotateY(180deg);
+        }
+        
+        .card.matched {
+            background: var(--accent);
+            transform: rotateY(180deg);
+            cursor: default;
+        }
+        
+        .home-btn {
+            padding: 12px 30px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .home-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(108, 92, 231, 0.6);
+        }
+        
+        .home-btn:active {
+            transform: translateY(1px);
+        }
+        
+        .home-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.3), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.4s ease;
+        }
+        
+        .home-btn:hover::after {
+            transform: translateX(100%);
+        }
+        
+        .comet {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px 2px white;
+            z-index: 0;
+        }
+        
+        .comet::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -50px;
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(255,255,255,0), white);
+        }
+        
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 5rem;
+            }
+            
+            .error-message {
+                font-size: 1.2rem;
+            }
+            
+            .card {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="constellation" id="constellation"></div>
+    <div class="container">
+        <div class="logo">Stellar Journey</div>
+        <h1 class="error-code">404</h1>
+        <p class="error-message">Houston, we have a problem! The page you're looking for has drifted into the cosmic void.</p>
+        
+        <div class="game-container" id="gameContainer">
+            <!-- Cards will be generated by JavaScript -->
+        </div>
+        
+        <button class="home-btn" onclick="window.location.href='/'">
+            <i class="fas fa-arrow-left"></i> Return to Earth
+        </button>
+    </div>
+    
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        // Create constellation background
+        function createConstellation() {
+            const container = document.getElementById('constellation');
+            const starsCount = Math.floor(window.innerWidth * window.innerHeight / 1000);
+            
+            for (let i = 0; i < starsCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                // Random size between 1-3px
+                const size = Math.random() * 2 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                
+                // Random position
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                
+                // Random animation delay
+                star.style.animationDelay = `${Math.random() * 2}s`;
+                
+                container.appendChild(star);
+            }
+            
+            // Create occasional comets
+            setInterval(() => {
+                if (Math.random() > 0.7) {
+                    createComet();
+                }
+            }, 3000);
+        }
+        
+        function createComet() {
+            const comet = document.createElement('div');
+            comet.className = 'comet';
+            
+            // Start position (random edge)
+            const edge = Math.floor(Math.random() * 4);
+            let startX, startY, endX, endY;
+            
+            switch(edge) {
+                case 0: // top
+                    startX = Math.random() * window.innerWidth;
+                    startY = -10;
+                    endX = startX + (Math.random() * 400 - 200);
+                    endY = window.innerHeight + 10;
+                    break;
+                case 1: // right
+                    startX = window.innerWidth + 10;
+                    startY = Math.random() * window.innerHeight;
+                    endX = -10;
+                    endY = startY + (Math.random() * 400 - 200);
+                    break;
+                case 2: // bottom
+                    startX = Math.random() * window.innerWidth;
+                    startY = window.innerHeight + 10;
+                    endX = startX + (Math.random() * 400 - 200);
+                    endY = -10;
+                    break;
+                case 3: // left
+                    startX = -10;
+                    startY = Math.random() * window.innerHeight;
+                    endX = window.innerWidth + 10;
+                    endY = startY + (Math.random() * 400 - 200);
+                    break;
+            }
+            
+            comet.style.left = `${startX}px`;
+            comet.style.top = `${startY}px`;
+            
+            document.body.appendChild(comet);
+            
+            // Animate comet
+            const duration = Math.random() * 3000 + 2000;
+            comet.animate([
+                { transform: `translate(0, 0)`, opacity: 0 },
+                { transform: `translate(0, 0)`, opacity: 1 },
+                { transform: `translate(${endX - startX}px, ${endY - startY}px)`, opacity: 0 }
+            ], {
+                duration: duration,
+                easing: 'linear'
+            });
+            
+            // Remove after animation
+            setTimeout(() => {
+                comet.remove();
+            }, duration);
+        }
+        
+        // Memory game logic
+        function createMemoryGame() {
+            const emojis = ['🚀', '👽', '🛸', '🌎', '🌕', '☄️', '🔭', '⭐'];
+            const cards = [...emojis, ...emojis]; // Duplicate for matching pairs
+            const gameContainer = document.getElementById('gameContainer');
+            
+            // Shuffle cards
+            cards.sort(() => Math.random() - 0.5);
+            
+            // Create card elements
+            cards.forEach((emoji, index) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.dataset.index = index;
+                card.dataset.value = emoji;
+                card.innerHTML = '<div class="card-back">?</div>';
+                
+                card.addEventListener('click', flipCard);
+                gameContainer.appendChild(card);
+            });
+            
+            let flippedCards = [];
+            let matchedPairs = 0;
+            
+            function flipCard() {
+                // Don't allow flipping if already flipped or matched
+                if (this.classList.contains('flipped') || 
+                    this.classList.contains('matched') ||
+                    flippedCards.length >= 2) {
+                    return;
+                }
+                
+                // Flip the card
+                this.classList.add('flipped');
+                this.innerHTML = this.dataset.value;
+                flippedCards.push(this);
+                
+                // Check for match when two cards are flipped
+                if (flippedCards.length === 2) {
+                    setTimeout(checkForMatch, 500);
+                }
+            }
+            
+            function checkForMatch() {
+                const [card1, card2] = flippedCards;
+                
+                if (card1.dataset.value === card2.dataset.value) {
+                    // Match found
+                    card1.classList.add('matched');
+                    card2.classList.add('matched');
+                    matchedPairs++;
+                    
+                    // Check if all pairs are matched
+                    if (matchedPairs === emojis.length) {
+                        setTimeout(() => {
+                            alert('Cosmic connection established! All pairs matched!');
+                        }, 300);
+                    }
+                } else {
+                    // No match - flip back
+                    card1.classList.remove('flipped');
+                    card2.classList.remove('flipped');
+                    card1.innerHTML = '<div class="card-back">?</div>';
+                    card2.innerHTML = '<div class="card-back">?</div>';
+                }
+                
+                flippedCards = [];
+            }
+        }
+        
+        // Initialize everything when page loads
+        window.onload = function() {
+            createConstellation();
+            createMemoryGame();
+        };
+    </script>
+</body>
+  </html>
